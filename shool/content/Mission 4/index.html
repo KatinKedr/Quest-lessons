@@ -1,0 +1,272 @@
+
+  <!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎃 Mission 4 — Pumpkin Courtyard</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet-dark: #1d133b;
+  --aqua: #8cf0ff;
+  --pink: #ff8ad6;
+  --gold: #f9cc6e;
+  --white: #ffffff;
+  --card-bg: #261b4d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: radial-gradient(circle at center, #1d133b 0%, #0c0720 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  border: 4px solid var(--aqua);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(140,240,255,0.5), inset 0 0 60px rgba(120,80,255,0.2);
+  background: url("https://katinkedr.github.io/Quest-lessons/shool/yard.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 2vh 2vw;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.08), transparent 60%);
+  animation: fog 10s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes fog {
+  0% { transform: translate(0,0); opacity: .6;}
+  100% { transform: translate(5%,5%); opacity: .9;}
+}
+
+.content {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--aqua);
+  text-shadow: 0 0 20px var(--aqua);
+  font-size: clamp(2.5rem, 1.5vw, 4rem);
+  text-align: center;
+  margin-bottom: 1.2vh;
+}
+
+.mission-text {
+  background: rgba(10,5,30,0.65);
+  border: 2px solid var(--aqua);
+  border-radius: 20px;
+  box-shadow: inset 0 0 25px rgba(140,240,255,0.3);
+  color: var(--white);
+  text-align: center;
+  font-size: clamp(0.9rem,1.1vw,1.3rem);
+  line-height: 1.5em;
+  padding: 1.2rem 1.5rem;
+  width: clamp(60%, 70%, 80%);
+  margin: 0 auto;
+}
+
+.task {
+  background: rgba(20,10,40,0.7);
+  border-radius: 20px;
+  padding: 2vh 3vw;
+  width: 80%;
+  text-align: center;
+  color: var(--white);
+  font-size: clamp(1rem,1.3vw,1.4rem);
+  box-shadow: 0 0 25px rgba(140,240,255,0.2);
+  margin-top: 2vh;
+}
+
+.sentence {
+  margin: 1.5vh 0;
+  font-weight: 500;
+}
+
+/* Кнопка вибору */
+.select-btn {
+  position: relative;
+  background: var(--aqua);
+  color: var(--violet-dark);
+  border: none;
+  border-radius: 8px;
+  padding: 0.3em 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.select-btn:hover {
+  background: var(--pink);
+  color: var(--white);
+}
+
+/* Випадаючий список */
+.options {
+  display: none;
+  position: absolute;
+  top: 110%; /* трохи нижче кнопки */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30,20,60,0.95);
+  border: 2px solid var(--aqua);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(140,240,255,0.3);
+  z-index: 10;
+  min-width: 120px;
+}
+.option {
+  color: var(--white);
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.option:hover {
+  background: var(--aqua);
+  color: var(--violet-dark);
+}
+
+.button {
+  background: var(--pink);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: clamp(1rem,1.4vw,1.5rem);
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,140,240,0.7);
+  transition: all 0.3s;
+  margin-top: 1vh;
+}
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,200,255,0.9);
+}
+
+.clue {
+  text-align: center;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: bold;
+  color: var(--gold);
+  opacity: 0;
+  text-shadow: 0 0 15px var(--gold), 0 0 30px var(--aqua);
+  transition: opacity .8s, transform .8s;
+  margin-top: 1vh;
+  transform: scale(0.9);
+}
+.show { opacity: 1; transform: scale(1); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="content">
+    <h1>🎃 Mission 4 — Pumpkin Courtyard</h1>
+    <div class="mission-text">
+      Elior виходить у двір, де ростуть гігантські <b>pumpkins</b>.  
+      Повітря пахне осінню і трохи магією.  
+      Посеред саду стоїть Маккл — гарбузовий велетень.  
+      Він сумує, бо ніхто не прийшов на його <b>party</b>.  
+      Щоб повернути йому настрій, допоможи створити запрошення!
+    </div>
+
+    <div class="task" id="task">
+      <div class="sentence">Our pumpkins are waiting for you — be <button class="select-btn" data-answer="brave">...</button> and come in!</div>
+      <div class="sentence">They tell jokes all night — they are really <button class="select-btn" data-answer="funny">...</button>!</div>
+      <div class="sentence">Don’t be afraid of us — we are not <button class="select-btn" data-answer="scary">...</button>!</div>
+      <div class="sentence">When someone falls, we always help — we are <button class="select-btn" data-answer="kind">...</button>!</div>
+      <div class="sentence">Music plays, lights shine — everyone feels <button class="select-btn" data-answer="happy">...</button>!</div>
+      <div class="sentence">Look! One pumpkin has wings — that’s <button class="select-btn" data-answer="strange">...</button>!</div>
+    </div>
+
+    <button class="button" onclick="checkAnswers()">Check</button>
+    <div class="clue" id="clue">🧩 Clue: “Go where mirrors speak the truth.”</div>
+  </div>
+</div>
+
+<script>
+const words = ["kind", "funny", "brave", "scary", "happy", "strange"];
+let currentOpen = null;
+
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+document.querySelectorAll(".select-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.querySelectorAll(".options").forEach(opt => opt.remove());
+    const optionsDiv = document.createElement("div");
+    optionsDiv.classList.add("options");
+    shuffle([...words]).forEach(w => {
+      const opt = document.createElement("div");
+      opt.classList.add("option");
+      opt.textContent = w;
+      opt.addEventListener("click", () => {
+        btn.textContent = w;
+        btn.dataset.value = w;
+        optionsDiv.remove();
+      });
+      optionsDiv.appendChild(opt);
+    });
+    btn.appendChild(optionsDiv);
+    optionsDiv.style.display = "block";
+    currentOpen = optionsDiv;
+  });
+});
+
+document.body.addEventListener("click", () => {
+  if (currentOpen) currentOpen.remove();
+});
+
+function checkAnswers() {
+  let allCorrect = true;
+  document.querySelectorAll(".select-btn").forEach(btn => {
+    if (btn.dataset.value === btn.dataset.answer) {
+      btn.style.background = "var(--aqua)";
+      btn.style.color = "var(--violet-dark)";
+    } else {
+      btn.style.background = "#ff5757";
+      btn.style.color = "white";
+      allCorrect = false;
+    }
+  });
+  if (allCorrect) document.getElementById("clue").classList.add("show");
+}
+</script>
+</body>
+</html>

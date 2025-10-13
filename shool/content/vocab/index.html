@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mission 7</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystic Academy – Magic Words</title>
+<style>
+  :root {
+    --deep-purple: #2B165C;
+    --royal-violet: #602BAE;
+    --dark-ink: #100628;
+    --magic-blue: #3EF3FF;
+    --soft-lavender: #B086FF;
+    --moon-white: #FDF8FF;
+    --neon-pink: #FF66CC;
+    --golden-orange: #FFA54C;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--moon-white);
+    background: linear-gradient(120deg, var(--dark-ink), var(--royal-violet), var(--deep-purple));
+    background-size: 300% 300%;
+    animation: aurora 10s ease-in-out infinite;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  @keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .container {
+    margin: 40px 20px 80px;
+    background: rgba(43, 22, 92, 0.85);
+    border: 3px solid var(--magic-blue);
+    border-radius: 25px;
+    padding: 40px 6%;
+    box-shadow: inset 0 0 35px var(--magic-blue), 0 0 45px rgba(62, 243, 255, 0.5);
+    backdrop-filter: blur(6px);
+    text-align: center;
+    width: 100%;
+    max-width: 850px;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--magic-blue);
+    text-shadow: 0 0 15px var(--magic-blue), 0 0 25px var(--soft-lavender);
+    font-size: clamp(1.5em, 4vw, 2.2em);
+    margin-bottom: 35px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px 35px;
+    justify-items: center;
+  }
+
+  .word {
+    background: var(--magic-blue);
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: var(--dark-ink);
+    font-size: clamp(1em, 2vw, 1.2em);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 15px var(--magic-blue), 0 0 30px var(--soft-lavender);
+    min-width: 120px;
+  }
+
+  .word:hover {
+    background: var(--neon-pink);
+    color: var(--moon-white);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--neon-pink), 0 0 40px var(--magic-blue);
+  }
+
+  .translation {
+    display: block;
+    font-weight: 700;
+    color: var(--moon-white);
+    opacity: 0;
+    margin-top: 8px;
+    font-size: clamp(0.9em, 1.5vw, 1.1em);
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .show {
+    opacity: 1;
+  }
+
+  .hint {
+    margin-top: 60px;
+    font-size: clamp(1em, 2vw, 1.3em);
+    font-weight: 600;
+    color: var(--golden-orange);
+    text-shadow: 0 0 12px var(--magic-blue);
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 30px 20px;
+    }
+    .grid {
+      gap: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔮 Mystic Academy Magic Words</h1>
+    <div class="grid">
+      <div><button class="word" onclick="toggle(this)">Funny</button><span class="translation">Кумедний</span></div>
+      <div><button class="word" onclick="toggle(this)">Noisy</button><span class="translation">Гучний</span></div>
+      <div><button class="word" onclick="toggle(this)">Kind</button><span class="translation">Добрий</span></div>
+      <div><button class="word" onclick="toggle(this)">Brave</button><span class="translation">Хоробрий</span></div>
+      <div><button class="word" onclick="toggle(this)">Tired</button><span class="translation">Втомлений</span></div>
+      <div><button class="word" onclick="toggle(this)">Scary</button><span class="translation">Страшний</span></div>
+      <div><button class="word" onclick="toggle(this)">Happy</button><span class="translation">Щасливий</span></div>
+      <div><button class="word" onclick="toggle(this)">Angry</button><span class="translation">Злий</span></div>
+      <div><button class="word" onclick="toggle(this)">Quiet</button><span class="translation">Тихий</span></div>
+      <div><button class="word" onclick="toggle(this)">Clever</button><span class="translation">Розумний</span></div>
+      <div><button class="word" onclick="toggle(this)">Strange</button><span class="translation">Дивний</span></div>
+      <div><button class="word" onclick="toggle(this)">Lazy</button><span class="translation">Ледачий</span></div>
+      <div><button class="word" onclick="toggle(this)">Silly</button><span class="translation">Безглуздий</span></div>
+      <div><button class="word" onclick="toggle(this)">Excited</button><span class="translation">Схвильований</span></div>
+    </div>
+
+    <div class="hint">
+      ✨ Щоб розпочати пошуки, іди в це місце — <strong>There are many books.</strong>
+    </div>
+  </div>
+
+<script>
+function toggle(button) {
+  const translation = button.nextElementSibling;
+  translation.classList.toggle("show");
+}
+</script>
+</body>
+</html>
+
+
+  <script>
+    
+  </script>
+</body>
+</html>

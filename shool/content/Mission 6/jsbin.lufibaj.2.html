@@ -1,0 +1,229 @@
+
+  <!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏰 Mission 6 — The Headmaster’s Tower</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet-dark: #1d133b;
+  --aqua: #8cf0ff;
+  --pink: #ff8ad6;
+  --gold: #f9cc6e;
+  --white: #ffffff;
+  --card-bg: #261b4d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: radial-gradient(circle at center, #1d133b 0%, #0c0720 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  border: 4px solid var(--aqua);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(140,240,255,0.5), inset 0 0 60px rgba(120,80,255,0.2);
+  background: url("https://katinkedr.github.io/Quest-lessons/shool/tower.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 2vw;
+  overflow-y: auto;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.08), transparent 60%);
+  animation: fog 10s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes fog {
+  0% { transform: translate(0,0); opacity: .6;}
+  100% { transform: translate(5%,5%); opacity: .9;}
+}
+
+.content {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--aqua);
+  text-shadow: 0 0 20px var(--aqua);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  text-align: center;
+  margin-bottom: 1.2vh;
+  margin-top: 2vh;
+}
+
+.mission-text {
+  background: rgba(10,5,30,0.65);
+  border: 2px solid var(--aqua);
+  border-radius: 20px;
+  box-shadow: inset 0 0 25px rgba(140,240,255,0.3);
+  color: var(--white);
+  text-align: center;
+  font-size: clamp(0.9rem,1.8vw,1.3rem);
+  line-height: 1.5em;
+  padding: 1.2rem 1.5rem;
+  width: clamp(60%, 70%, 80%);
+  margin: 0 auto 2vh auto;
+   margin-top: 4vh;
+}
+
+.audio-player {
+  
+  padding: 1em 2em;
+  box-shadow: 0 0 2115px;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 2vh;
+}
+
+audio {
+  width: 550px;
+}
+
+.story {
+  background: rgba(20,10,40,0.7);
+  border: 2px solid var(--pink);
+  border-radius: 20px;
+  padding: 2vh 3vw;
+  width: 80%;
+  color: var(--white);
+  font-size: clamp(1rem, 2.3vw, 1.4rem);
+  box-shadow: 0 0 25px rgba(140,240,255,0.2);
+  margin-bottom: 3vh;
+  margin-top: 4vh;
+}
+
+input {
+  border: none;
+  border-radius: 8px;
+  padding: 0.3em 0.6em;
+  font-size: 1em;
+  margin-left: 0.4em;
+  text-align: center;
+  background-color: rgba(255,255,255,0.8);
+  color: var(--violet-dark);
+  font-weight: bold;
+  width: 100px;
+}
+
+input.correct {
+  background: var(--aqua);
+  color: var(--violet-dark);
+  box-shadow: 0 0 15px var(--aqua);
+}
+input.wrong {
+  background: #ff5757;
+  color: white;
+}
+
+.button {
+  background: var(--pink);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: clamp(1rem,1.4vw,1.5rem);
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,140,240,0.7);
+  transition: all 0.3s;
+}
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,200,255,0.9);
+}
+
+.spell {
+  text-align: center;
+  font-size: clamp(1.6rem, 2.2vw, 2.6rem);
+  font-weight: bold;
+  color: var(--gold);
+  opacity: 0;
+  text-shadow: 0 0 25px var(--gold), 0 0 40px var(--aqua);
+  transition: opacity 1s ease-in-out;
+  margin-top: 1vh;
+}
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="content">
+    <h1>🏰 Mission 6 — The Headmaster’s Tower</h1>
+    <div class="mission-text">
+      Elior піднімається вузькими сходами на самий верх <b>Tower</b>.  
+      За дверима — тиша і світло свічок. Стародавній дух Аркан чекає його біля чарівної книги.  
+      “Щоб розбудити школу, потрібно вимовити правильні слова,” — каже він.  
+      “Слухай уважно і заповни пропуски.”
+    </div>
+
+    <div class="audio-player">
+      <audio id="audio" controls>
+        <source src="https://katinkedr.github.io/Quest-lessons/shool/school.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="story">
+      <p>Elior is very <input data-answer="friendly"> when he helps his friends.</p>
+      <p>The wizard says, 'Be <input data-answer="brave"> and open the dark door.'</p>
+      <p>Everyone at the party feels <input data-answer="happy"> tonight.</p>
+      <p>Greta the goblin is <input data-answer="kind"> and helps the small bats.</p>
+      <p>In the library, ghosts are too <input data-answer="noisy"> sometimes!</p>
+      <p>The classroom becomes very <input data-answer="quiet"> when the spell begins.</p>
+    </div>
+
+    <button class="button" onclick="checkAnswers()">Check</button>
+    <div class="spell" id="spell">✨ “Let the party begin!”</div>
+  </div>
+</div>
+
+<script>
+function checkAnswers() {
+  let allCorrect = true;
+  document.querySelectorAll("input").forEach(input => {
+    if (input.value.trim().toLowerCase() === input.dataset.answer) {
+      input.classList.add("correct");
+      input.classList.remove("wrong");
+    } else {
+      input.classList.add("wrong");
+      input.classList.remove("correct");
+      allCorrect = false;
+    }
+  });
+  if (allCorrect) document.getElementById("spell").classList.add("show");
+}
+</script>
+</body>
+</html>

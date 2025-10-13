@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by KatinKedr (http://jsbin.com/lufibaj/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧛‍♂️ Mission 3 — The Great Hall</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet-dark: #1d133b;
+  --aqua: #8cf0ff;
+  --pink: #ff8ad6;
+  --white: #fefefe;
+  --card-bg: #261b4d;
+  --gold: #f9cc6e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: radial-gradient(circle at center, #1d133b 0%, #0c0720 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  border: 4px solid var(--aqua);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(140,240,255,0.5), inset 0 0 60px rgba(120,80,255,0.2);
+  background: url("https://katinkedr.github.io/Quest-lessons/shool/hall.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 2vh 2vw;
+}
+
+/* ефект туману */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.08), transparent 60%);
+  animation: fog 10s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes fog {
+  0% { transform: translate(0,0); opacity: .6;}
+  100% { transform: translate(5%,5%); opacity: .9;}
+}
+
+.content {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 🔹 Заголовок і текст місії */
+.top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2vh;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--aqua);
+  text-shadow: 0 0 20px var(--aqua);
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
+  text-align: center;
+  margin-bottom: 1.2vh;
+}
+
+.mission-text {
+  background: rgba(10,5,30,0.65);
+  border: 2px solid var(--aqua);
+  border-radius: 20px;
+  box-shadow: inset 0 0 25px rgba(140,240,255,0.3);
+  color: var(--white);
+  text-align: center;
+  font-size: clamp(0.9rem,1.1vw,1.3rem);
+  line-height: 1.5em;
+  padding: 1.2rem 1.5rem;
+  width: clamp(60%, 70%, 80%);
+  margin: 0 auto;
+}
+
+/* 🔹 Центр з картками */
+.center-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* картки */
+.emoji-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2vw;
+  margin-bottom: 3vh;
+}
+
+.emoji-card {
+  background: var(--card-bg);
+  border: 2px solid var(--aqua);
+  border-radius: 20px;
+  width: clamp(120px,13vw,170px);
+  height: clamp(150px,18vh,190px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 0 25px rgba(140,240,255,0.25);
+  transition: 0.3s;
+}
+.emoji-card:hover { transform: scale(1.05); }
+
+.emoji {
+  font-size: clamp(2.5rem,4vw,4.5rem);
+}
+
+.dropzone {
+  border: 2px dashed var(--aqua);
+  border-radius: 12px;
+  width: 80%;
+  height: clamp(35px,5vh,45px);
+  color: var(--aqua);
+  font-weight: bold;
+  font-size: clamp(0.9rem,1vw,1.2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+.word-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1vw;
+  margin-bottom: 2vh;
+}
+
+.word {
+  background: var(--aqua);
+  color: var(--violet-dark);
+  border-radius: 10px;
+  padding: 0.5rem 1.3rem;
+  font-weight: 700;
+  cursor: grab;
+  font-size: clamp(0.9rem,1.2vw,1.3rem);
+  box-shadow: 0 0 10px rgba(140,240,255,0.5);
+  transition: all 0.2s;
+}
+.word:hover {
+  transform: scale(1.05);
+  background: var(--pink);
+  color: var(--white);
+}
+
+.button {
+  background: var(--pink);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: clamp(1rem,1.4vw,1.5rem);
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,140,240,0.7);
+  transition: all 0.3s;
+  margin-top: 1vh;
+}
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,200,255,0.9);
+}
+
+.clue {
+  text-align: center;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: bold;
+  color: var(--gold);
+  opacity: 0;
+  text-shadow: 0 0 15px var(--gold), 0 0 30px var(--aqua);
+  transition: opacity .8s, transform .8s;
+  margin-top: 1vh;
+  transform: scale(0.9);
+}
+.show { opacity: 1; transform: scale(1); }
+
+.wrong { border-color: #ff5757 !important; box-shadow: 0 0 10px #ff5757; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="content">
+
+    <div class="top-section">
+      <h1>🧛‍♂️ Mission 3 — The Great Hall</h1>
+      <div class="mission-text">
+        Elior відчиняє важкі двері <b>Great Hall</b>. Всередині — сотні костюмів, що шепочуть один одному.  
+        Вампір Фенгор стоїть перед великим дзеркалом, але не бачить свого <b>reflection</b>.  
+        Він не знає, як виглядає, і не може впізнати свої <b>emotions</b>.  
+        Коли ти наближаєшся, Фенгор каже:  
+        “Я бачу тільки тінь. Допоможи мені зрозуміти, який я сьогодні — веселий, тихий чи хоробрий?”
+      </div>
+    </div>
+
+    <div class="center-area">
+      <div class="emoji-row">
+        <div class="emoji-card" data-answer="clever"><div class="emoji">🧠</div><div class="dropzone">Drop here</div></div>
+        <div class="emoji-card" data-answer="silly"><div class="emoji">🤡</div><div class="dropzone">Drop here</div></div>
+        <div class="emoji-card" data-answer="lazy"><div class="emoji">😴</div><div class="dropzone">Drop here</div></div>
+        <div class="emoji-card" data-answer="quiet"><div class="emoji">🤫</div><div class="dropzone">Drop here</div></div>
+        <div class="emoji-card" data-answer="strong"><div class="emoji">💪</div><div class="dropzone">Drop here</div></div>
+        <div class="emoji-card" data-answer="friendly"><div class="emoji">😊</div><div class="dropzone">Drop here</div></div>
+      </div>
+
+      <div class="word-row" id="wordRow"></div>
+
+      <button class="button" onclick="checkAnswers()">Check</button>
+      <div class="clue" id="clue">🧩 Clue: “Pumpkins are calling outside.”</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let dragged = null;
+const zones = document.querySelectorAll('.dropzone');
+const clue = document.getElementById('clue');
+const wordRow = document.getElementById('wordRow');
+const words = ["clever","silly","lazy","quiet","strong","friendly"];
+
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+// рандомні слова
+shuffle(words).forEach(word => {
+  const div = document.createElement('div');
+  div.classList.add('word');
+  div.textContent = word;
+  div.draggable = true;
+  div.addEventListener('dragstart', () => dragged = div);
+  wordRow.appendChild(div);
+});
+
+zones.forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.textContent = dragged.textContent;
+    zone.dataset.value = dragged.textContent;
+    zone.classList.remove('wrong');
+  });
+});
+
+function checkAnswers() {
+  let allCorrect = true;
+  zones.forEach(zone => {
+    const correct = zone.parentElement.getAttribute('data-answer');
+    if (zone.dataset.value === correct) {
+      zone.style.borderColor = "#8cf0ff";
+      zone.style.boxShadow = "0 0 15px #8cf0ff";
+    } else {
+      zone.classList.add("wrong");
+      allCorrect = false;
+    }
+  });
+  if (allCorrect) clue.classList.add('show');
+}
+</script>
+</body>
+</html>

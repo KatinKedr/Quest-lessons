@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by KatinKedr (http://jsbin.com/lufibaj/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧪 Mission 2 — Potion Lab of Echoes</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet-dark: #1d133b;
+  --aqua: #8cf0ff;
+  --pink: #ff8ad6;
+  --white: #fefefe;
+  --card-bg: #261b4d;
+  --gold: #f9cc6e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: radial-gradient(circle at center, #1d133b 0%, #0c0720 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  border: 4px solid var(--aqua);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(140,240,255,0.5), inset 0 0 60px rgba(120,80,255,0.2);
+  background: url("https://katinkedr.github.io/Quest-lessons/shool/potion.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ефект туману */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.08), transparent 60%);
+  animation: fog 10s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes fog {
+  0% { transform: translate(0,0); opacity: .6;}
+  100% { transform: translate(5%,5%); opacity: .9;}
+}
+
+.content {
+  z-index: 1;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  padding: 2vh 2vw;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--aqua) transparent;
+}
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-thumb { background-color: var(--aqua); border-radius: 4px; }
+
+/* заголовок і опис */
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--aqua);
+  text-shadow: 0 0 20px var(--aqua);
+  font-size: clamp(1.5rem, 2.8vw, 3rem);
+  text-align: center;
+}
+
+.mission-text {
+  background: rgba(10,5,30,0.65);
+  border: 2px solid var(--aqua);
+  border-radius: 20px;
+  box-shadow: inset 0 0 25px rgba(140,240,255,0.3);
+  color: var(--white);
+  text-align: center;
+  font-size: clamp(0.9rem,1.2vw,1.3rem);
+  line-height: 1.5em;
+  padding: 1rem;
+  width: 85%;
+}
+
+/* питання */
+.question {
+  background: var(--card-bg);
+  border: 2px solid var(--aqua);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(140,240,255,0.3);
+  color: var(--white);
+  width: 80%;
+  margin: 1.5vh 0;
+  padding: 1rem;
+  text-align: left;
+  transition: all 0.3s;
+}
+
+.question:hover { transform: scale(1.02); }
+
+.q-text {
+  margin-bottom: 1vh;
+  font-size: clamp(1rem,1.3vw,1.4rem);
+  font-weight: 600;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7vw;
+}
+
+.option {
+  background: var(--aqua);
+  color: var(--violet-dark);
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  font-size: clamp(0.9rem,1.1vw,1.2rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(140,240,255,0.5);
+}
+.option:hover { transform: scale(1.05); background: var(--pink); color: var(--white); }
+.option.selected { background: var(--pink); color: var(--white); box-shadow: 0 0 15px var(--pink); }
+.option.correct { background: #00c896; color: var(--white); }
+.option.wrong { background: #ff5757; color: var(--white); }
+
+/* кнопка */
+.button {
+  background: var(--pink);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: clamp(1rem,1.4vw,1.5rem);
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,140,240,0.7);
+  transition: all 0.3s;
+  margin-top: 2vh;
+}
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,200,255,0.9);
+}
+
+/* підказка */
+.clue {
+  text-align: center;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: bold;
+  color: var(--gold);
+  opacity: 0;
+  text-shadow: 0 0 15px var(--gold), 0 0 30px var(--aqua);
+  transition: opacity .8s, transform .8s;
+  margin-top: 1vh;
+  transform: scale(0.9);
+}
+.show { opacity: 1; transform: scale(1); }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="content">
+    <h1>🧪 Mission 2 — Potion Lab of Echoes</h1>
+
+    <div class="mission-text">
+      Elior спускається сходами до <b>Potion Lab</b>. У повітрі пахне <b>magical</b> інгрідієнтами.  
+      Кажанка Батілда літає між колбами, збираючи чарівні краплі. Вона каже:  
+      “Всі зілля переплуталися. Допоможи мені знайти назву до кожного, прочитавши описи."
+       </div>
+
+    <div id="questions-container"></div>
+
+    <button class="button" onclick="checkAnswers()">Check</button>
+    <div class="clue" id="clue">🧩 Clue: “Where costumes whisper, the next secret hides.”</div>
+  </div>
+</div>
+
+<script>
+const questionsData = [
+  { text: "He smiles and gives everyone sweets.", options: ["happy","angry","tired"], correct: "happy" },
+  { text: "She is bad person and always shout.", options: ["angry","excited","strange"], correct: "angry" },
+  { text: "He wants to sleep.", options: ["tired","happy","scary"], correct: "tired" },
+  { text: "She jumps and laughs a lot.", options: ["excited","shy","tired"], correct: "excited" },
+  { text: "He has small eyes and big teeth.", options: ["scary","friendly","happy"], correct: "scary" },
+  { text: "She talks to her cat in three languages.", options: ["silly","clever","noisy"], correct: "clever"},
+];
+
+// функція перемішування масиву
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+const container = document.getElementById('questions-container');
+
+questionsData.forEach((q, index) => {
+  const qDiv = document.createElement('div');
+  qDiv.classList.add('question');
+  qDiv.dataset.correct = q.correct;
+
+  const qText = document.createElement('div');
+  qText.classList.add('q-text');
+  qText.textContent = `${index+1}. ${q.text}`;
+  qDiv.appendChild(qText);
+
+  const optionsDiv = document.createElement('div');
+  optionsDiv.classList.add('options');
+
+  // тепер кожен набір варіантів перемішується
+  shuffle([...q.options]).forEach(opt => {
+    const btn = document.createElement('button');
+    btn.classList.add('option');
+    btn.textContent = opt;
+    btn.addEventListener('click', () => {
+      [...optionsDiv.children].forEach(o => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      qDiv.dataset.answer = opt;
+    });
+    optionsDiv.appendChild(btn);
+  });
+
+  qDiv.appendChild(optionsDiv);
+  container.appendChild(qDiv);
+});
+
+function checkAnswers() {
+  let allCorrect = true;
+  const clue = document.getElementById('clue');
+  document.querySelectorAll('.question').forEach(q => {
+    const correct = q.dataset.correct;
+    const answer = q.dataset.answer;
+    const options = q.querySelectorAll('.option');
+    options.forEach(opt => {
+      opt.classList.remove('correct','wrong');
+      if(opt.textContent === correct && answer === correct) {
+        opt.classList.add('correct');
+      } else if(opt.textContent === answer && answer !== correct) {
+        opt.classList.add('wrong');
+      }
+    });
+    if(answer !== correct) allCorrect = false;
+  });
+  if(allCorrect) clue.classList.add('show');
+}
+</script>
+</body>
+</html>
