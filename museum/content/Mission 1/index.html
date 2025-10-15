@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🕸️ Mission 1 — Hall of Symbols</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night-blue: #0E1B25;
+  --museum-teal: #1B3A4B;
+  --stone-blue: #2E5266;
+  --fog-green: #3A6B73;
+  --warm-yellow: #FFD972;
+  --pumpkin-orange: #FFB347;
+  --soft-cream: #FFF3B0;
+  --shadow-black: #0A0A0A;
+  --bright-blue: #46C1FF;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: radial-gradient(circle at center, var(--night-blue) 0%, var(--stone-blue) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  border: 4px solid var(--pumpkin-orange);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(255,179,71,0.5), inset 0 0 60px rgba(255,217,114,0.2);
+  background: linear-gradient(rgba(14,27,37,0.4), rgba(14,27,37,0.4)), url('https://katinkedr.github.io/Quest-lessons/museum/hall-1.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.content {
+  z-index: 1;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  padding: 2vh 2vw;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--warm-yellow) transparent;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--warm-yellow);
+  text-shadow: 0 0 20px var(--pumpkin-orange);
+  font-size: clamp(1.5rem, 2.8vw, 3rem);
+  text-align: center;
+}
+
+.mission-text {
+  background: rgba(10,5,30,0.75);
+  border: 2px solid var(--pumpkin-orange);
+  border-radius: 20px;
+  box-shadow: inset 0 0 25px rgba(255,179,71,0.3);
+  color: var(--soft-cream);
+  text-align: center;
+  font-size: clamp(0.9rem,1.2vw,1.3rem);
+  line-height: 1.5em;
+  padding: 1rem;
+  width: 85%;
+}
+
+.match-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 2fr;
+  column-gap: 3rem;
+  margin-top: 2rem;
+  width: 90%;
+}
+
+.term-column, .definition-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background: rgba(43,58,75,0.9);
+  border: 3px solid var(--bright-blue);
+  border-radius: 15px;
+  color: var(--soft-cream);
+  padding: 0.5rem 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(70,193,255,0.5);
+  width: 100%;
+  max-width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--bright-blue);
+}
+
+.definition {
+  background: rgba(43,58,75,0.9);
+  border: 2px dashed var(--bright-blue);
+  border-radius: 15px;
+  color: var(--soft-cream);
+  padding: 1rem;
+  font-weight: 700;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 10px rgba(70,193,255,0.3);
+}
+
+.definition:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--bright-blue);
+}
+
+.button {
+  background: var(--pumpkin-orange);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: clamp(1rem,1.4vw,1.5rem);
+  color: var(--shadow-black);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,179,71,0.7);
+  transition: all 0.3s;
+  margin-top: 2vh;
+}
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,217,114,0.9);
+}
+
+.clue {
+  text-align: center;
+  font-size: clamp(1.4rem,2.5vw,2rem);
+  font-weight: 800;
+  color: var(--warm-yellow);
+  text-shadow: 0 0 20px var(--warm-yellow), 0 0 30px var(--pumpkin-orange);
+  opacity: 0;
+  transition: opacity .6s ease-in-out;
+  margin-top: 2vh;
+}
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="content">
+    <h1>🕸️ Mission 1 — Hall of Symbols</h1>
+
+    <div class="mission-text">
+      When you enter the first hall, the air feels cold and quiet. Ancient paintings of pumpkins and ghosts hang on the walls. A candle lights itself, and words appear: <b>“Learn the language of the spirits.”</b> You must match the words with their meanings to understand Halloween’s secrets.
+    </div>
+
+    <div class="match-grid">
+      <div class="term-column" id="termColumn"></div>
+      <div class="definition-column" id="definitionColumn"></div>
+    </div>
+
+    <button class="button" onclick="checkMatches()">Check Answers</button>
+    <div class="clue" id="clue">🔐 Clue 1: “...not stolen...”</div>
+  </div>
+</div>
+
+<script>
+const words = {
+  spirit: 'a ghost or soul of a dead person',
+  bonfire: 'a large fire that people make outside to celebrate or for warmth',
+  noise: 'a sound, especially a loud or unpleasant one',
+  disappear: 'to stop being seen or to go away',
+  ancient: 'very old, from a time long ago',
+  cursed: 'having a magical spell that brings bad luck',
+  shadow: 'a dark shape made when light is blocked',
+  whisper: 'to speak very quietly so that only someone close can hear',
+  hide: 'to put something where people cannot see it',
+  scream: 'to make a loud high sound with your voice because you are scared or excited',
+  mystery: 'something that is secret or difficult to understand',
+  appear: 'to come into sight or become visible'
+};
+
+const termColumn = document.getElementById('termColumn');
+const defColumn = document.getElementById('definitionColumn');
+const clue = document.getElementById('clue');
+const shuffledWords = Object.keys(words).sort(() => Math.random() - 0.5);
+const shuffledDefs = Object.values(words).sort(() => Math.random() - 0.5);
+
+shuffledWords.forEach(word => {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.textContent = word;
+  card.draggable = true;
+  card.dataset.word = word;
+  card.addEventListener('dragstart', e => e.dataTransfer.setData('word', word));
+  termColumn.appendChild(card);
+});
+
+shuffledDefs.forEach(definition => {
+  const def = document.createElement('div');
+  def.classList.add('definition');
+  def.textContent = definition;
+  def.addEventListener('dragover', e => e.preventDefault());
+  def.addEventListener('drop', e => {
+    const dropped = e.dataTransfer.getData('word');
+    const correct = Object.entries(words).find(([w, d]) => d === definition)[0];
+    if (dropped === correct) {
+      def.style.borderColor = 'var(--warm-yellow)';
+      def.style.boxShadow = '0 0 15px var(--warm-yellow)';
+      def.style.background = 'rgba(255,217,114,0.2)';
+      def.textContent = `${dropped.toUpperCase()} ✓`;
+    } else {
+      def.style.borderColor = 'red';
+      def.style.boxShadow = '0 0 10px red';
+    }
+  });
+  defColumn.appendChild(def);
+});
+
+function checkMatches() {
+  const done = [...document.querySelectorAll('.definition')].filter(d => d.textContent.includes('✓')).length;
+  if (done === Object.keys(words).length) {
+    clue.classList.add('show');
+  }
+}
+</script>
+</body>
+</html>

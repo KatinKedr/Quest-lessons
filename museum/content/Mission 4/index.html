@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>👻 Mission 4 — Hall of Shadows</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --night-blue:#0E1B25;
+    --museum-teal:#1B3A4B;
+    --stone-blue:#2E5266;
+    --fog-green:#3A6B73;
+    --warm-yellow:#FFD972;
+    --pumpkin-orange:#FFB347;
+    --soft-cream:#FFF3B0;
+    --bright-blue:#3A6B73;
+    --error:#FF5E6C;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at center,var(--night-blue) 0%,var(--stone-blue) 100%);font-family:'Nunito',sans-serif;overflow:hidden}
+  .container{position:relative;width:90vw;height:90vh;border:4px solid var(--pumpkin-orange);border-radius:30px;box-shadow:0 0 40px rgba(255,179,71,.5),inset 0 0 60px rgba(255,217,114,.2);background:linear-gradient(rgba(14,27,37,.45),rgba(14,27,37,.45)),url('https://katinkedr.github.io/Quest-lessons/museum/hall-4.jpg') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;overflow:hidden}
+  .content{z-index:1;width:95%;display:flex;flex-direction:column;align-items:center;gap:2vh;padding:2vh 2vw;overflow-y:auto}
+  h1{font-family:'Fredoka One',cursive;color:var(--warm-yellow);text-shadow:0 0 20px var(--pumpkin-orange);font-size:clamp(1.5rem,2.8vw,3rem);text-align:center;margin:0}
+  .mission-text{background:rgba(10,5,30,.75);border:2px solid var(--pumpkin-orange);border-radius:20px;box-shadow:inset 0 0 25px rgba(255,179,71,.3);color:var(--soft-cream);text-align:center;font-size:clamp(.9rem,1.2vw,1.3rem);line-height:1.5;padding:1rem;width:85%}
+
+  .sentence-container{background:rgba(14,27,37,.8);border:2px solid var(--bright-blue);border-radius:15px;box-shadow:inset 0 0 20px rgba(58,107,115,.35);padding:2rem;width:85%;display:flex;flex-direction:column;gap:1rem;color:var(--soft-cream);font-size:clamp(1rem,1.2vw,1.3rem);text-align:left}
+
+  .event{background:rgba(255,217,114,.08);border:2px solid var(--bright-blue);border-radius:12px;padding:.6rem 1rem;box-shadow:0 0 10px rgba(58,107,115,.35);cursor:grab;transition:.2s;font-weight:700}
+  .event:hover{transform:scale(1.05)}
+
+  .dropzone{border:2px dashed var(--bright-blue);border-radius:12px;min-height:50px;padding:.6rem 1rem;display:flex;align-items:center;justify-content:center;color:var(--soft-cream);font-weight:700;transition:.3s}
+
+  .ok{border-color:var(--warm-yellow)!important;box-shadow:0 0 16px rgba(255,217,114,.8)!important}
+  .err{border-color:var(--error)!important;box-shadow:0 0 12px rgba(255,94,108,.8)!important}
+
+  .button{background:var(--pumpkin-orange);border:none;border-radius:10px;padding:.6rem 1.5rem;font-size:clamp(1rem,1.4vw,1.5rem);color:var(--night-blue);font-weight:800;cursor:pointer;box-shadow:0 0 20px rgba(255,179,71,.7);transition:.25s;margin-top:2vh}
+  .button:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(255,217,114,.9)}
+
+  .clue{opacity:0;transition:opacity .6s ease-in-out;text-align:center;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;color:var(--warm-yellow);text-shadow:0 0 20px var(--warm-yellow),0 0 30px var(--pumpkin-orange);margin-top:2vh}
+  .show{opacity:1}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>👻 Mission 4 — Hall of Shadows</h1>
+      <div class="mission-text">
+        The lights suddenly flicker as you walk into the next hall. Shadows move on the walls, and something cold brushes your arm. The sound of footsteps echoes behind you. Arrange the events in the right order to find out what really happened in the dark museum.
+      </div>
+
+      <div class="sentence-container" id="events">
+        <div class="event" draggable="true" data-order="2">A. The guard heard a strange noise.</div>
+        <div class="event" draggable="true" data-order="1">B. The lights went off.</div>
+        <div class="event" draggable="true" data-order="3">C. A dark shadow moved across the wall.</div>
+        <div class="event" draggable="true" data-order="5">D. The mask began to hide itself inside the glass case.</div>
+        <div class="event" draggable="true" data-order="4">E. Someone screamed in the next room.</div>
+        <div class="event" draggable="true" data-order="6">F. The museum became completely silent.</div>
+      </div>
+
+      <button class="button" id="check">Check Order</button>
+      <div class="clue" id="clue">🔐 Clue 4: “…evil spirits...”</div>
+    </div>
+  </div>
+
+<script>
+const events = document.querySelectorAll('.event');
+const container = document.getElementById('events');
+let dragItem = null;
+
+events.forEach(ev => {
+  ev.addEventListener('dragstart', () => dragItem = ev);
+  ev.addEventListener('dragover', e => e.preventDefault());
+  ev.addEventListener('drop', e => {
+    e.preventDefault();
+    if(dragItem && dragItem !== ev){
+      const draggedIndex = Array.from(container.children).indexOf(dragItem);
+      const droppedIndex = Array.from(container.children).indexOf(ev);
+      if(draggedIndex < droppedIndex){
+        container.insertBefore(dragItem, ev.nextSibling);
+      } else {
+        container.insertBefore(dragItem, ev);
+      }
+    }
+  });
+});
+
+document.getElementById('check').addEventListener('click',()=>{
+  const current = Array.from(container.children);
+  let allOk = true;
+  current.forEach((ev,i)=>{
+    ev.classList.remove('ok','err');
+    const correct = parseInt(ev.dataset.order);
+    if(correct===i+1){
+      ev.classList.add('ok');
+    } else {
+      ev.classList.add('err');
+      allOk=false;
+    }
+  });
+  if(allOk){
+    document.getElementById('clue').classList.add('show');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>✨ FINAL — The Truth of the Mask</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --deep-blue: #0b1a3a;
+    --soft-cream: #fefaf3;
+    --aqua: #3ef3ff;
+    --highlight: #4e92e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--deep-blue);
+    font-family: 'Nunito', sans-serif;
+  }
+  .container {
+    width: 90vw;
+    height: 90vh;
+    border: 4px solid var(--aqua);
+    border-radius: 30px;
+    box-shadow: 0 0 40px rgba(62,243,255,0.4), inset 0 0 60px rgba(62,243,255,0.2);
+    background: url('https://katinkedr.github.io/Quest-lessons/museum/hall-secret.jpg') center/cover no-repeat;
+    overflow-y: auto;
+    padding: 3vh 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--aqua);
+    text-shadow: 0 0 20px var(--highlight);
+    font-size: clamp(1.5rem, 2.8vw, 3rem);
+    text-align: center;
+    margin-bottom: 2vh;
+  }
+  .intro {
+    background: rgba(11,26,58,0.75);
+    border: 2px solid var(--aqua);
+    border-radius: 20px;
+    box-shadow: inset 0 0 25px rgba(62,243,255,0.3);
+    color: var(--soft-cream);
+    text-align: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.3rem);
+    line-height: 1.5;
+    padding: 1.5rem;
+    width: 85%;
+    margin-bottom: 3vh;
+  }
+  .sentence-box {
+    background: rgba(11,26,58,0.75);
+    border: 2px solid var(--aqua);
+    border-radius: 15px;
+    padding: 1rem;
+    color: var(--soft-cream);
+    width: 85%;
+    margin: 1rem auto;
+    text-align: center;
+  }
+  .dropzone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    min-height: 35px;
+    background: rgba(62,243,255,0.15);
+    border: 2px dashed var(--aqua);
+    border-radius: 10px;
+    margin: 0 5px;
+  }
+  .word-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2vh;
+  }
+  .word {
+    background: rgba(62,243,255,0.25);
+    border: 2px solid var(--aqua);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    color: var(--soft-cream);
+    font-weight: 700;
+    cursor: grab;
+    transition: 0.3s;
+  }
+  .word:hover { background: var(--highlight); transform: scale(1.05); }
+  .button {
+    background: var(--aqua);
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    font-size: clamp(1rem, 1.4vw, 1.5rem);
+    color: var(--deep-blue);
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(62,243,255,0.6);
+    transition: 0.25s;
+    margin-top: 2vh;
+  }
+  .button:hover { transform: scale(1.06); box-shadow: 0 0 30px rgba(62,243,255,0.9); }
+  .mask-img {
+    width: 250px;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    margin-top: 3vh;
+  }
+  .mask-img.show { opacity: 1; filter: drop-shadow(0 0 25px var(--aqua)); }
+  .final-text {
+    opacity: 0;
+    color: var(--aqua);
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 800;
+    text-align: center;
+    margin-top: 2vh;
+    text-shadow: 0 0 20px var(--highlight);
+    transition: opacity 2s ease-in-out;
+  }
+  .final-text.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ FINAL — The Truth of the Mask</h1>
+    <div class="intro">
+      Dr. Blackwood checked all his notes and ancient scrolls. He finally understood the mystery. Now, you must help him reveal the truth hidden in the final words of the legend.
+    </div>
+
+    <div class="sentence-box" data-answer="The mask was not stolen, but hidden for a reason.">
+      The mask was not <div class="dropzone"></div>, but <div class="dropzone"></div> for a reason.
+    </div>
+
+    <div class="sentence-box" data-answer="The mask hides to protect from the evil spirits.">
+      The mask <div class="dropzone"></div> to <div class="dropzone"></div> from the <div class="dropzone"></div> spirits.
+    </div>
+
+    <div class="sentence-box" data-answer="Only truth can wake it.">
+      Only <div class="dropzone"></div> can <div class="dropzone"></div> it.
+    </div>
+
+    <div class="sentence-box" data-answer="The Mask protects the living.">
+      The Mask <div class="dropzone"></div> the <div class="dropzone"></div>.
+    </div>
+
+    <div class="word-row" id="wordRow"></div>
+
+    <button class="button" id="check">Check</button>
+    <img src="https://katinkedr.github.io/Quest-lessons/museum/Mask1.png" class="mask-img" id="maskImg" alt="Glowing mask" />
+    <div class="final-text" id="finalText">🎃 Halloween is not about fear — it’s about memory and protection.</div>
+  </div>
+
+<script>
+const words = ['stolen','hidden','hides','protect','evil','truth','wake','protects','living'];
+const wordRow = document.getElementById('wordRow');
+let dragged = null;
+
+// create draggable words
+words.forEach(w => {
+  const el = document.createElement('div');
+  el.classList.add('word');
+  el.textContent = w;
+  el.draggable = true;
+  el.addEventListener('dragstart', () => dragged = el);
+  wordRow.appendChild(el);
+});
+
+// make dropzones work
+document.querySelectorAll('.dropzone').forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    if (!dragged) return;
+    zone.textContent = dragged.textContent;
+    dragged.style.visibility = 'hidden';
+    dragged = null;
+  });
+});
+
+// check answers
+const checkBtn = document.getElementById('check');
+const maskImg = document.getElementById('maskImg');
+const finalText = document.getElementById('finalText');
+checkBtn.addEventListener('click', () => {
+  maskImg.classList.add('show');
+  finalText.classList.add('show');
+});
+</script>
+</body>
+</html>

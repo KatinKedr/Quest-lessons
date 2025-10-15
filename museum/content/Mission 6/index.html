@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by KatinKedr (http://jsbin.com/lufibaj/4/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🏩 Mission 6 — The Secret Room</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --deep-blue: #0b1a3a;
+    --soft-cream: #fefaf3;
+    --aqua: #3ef3ff;
+    --highlight: #4e92e0;
+    --correct: #4effa1;
+    --incorrect: #ff5e6c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--deep-blue);
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .container {
+    width: 90vw;
+    height: 90vh;
+    border: 4px solid var(--aqua);
+    border-radius: 30px;
+    box-shadow: 0 0 40px rgba(62, 243, 255, 0.4), inset 0 0 60px rgba(62, 243, 255, 0.2);
+    background: url('https://katinkedr.github.io/Quest-lessons/museum/hall-6.jpg') center/cover no-repeat;
+    overflow-y: auto;
+    padding: 2vh 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--aqua);
+    text-shadow: 0 0 20px var(--highlight);
+    font-size: clamp(1.5rem, 2.8vw, 3rem);
+    text-align: center;
+    margin-bottom: 1vh;
+  }
+
+  .mission-text {
+    background: rgba(11, 26, 58, 0.75);
+    border: 2px solid var(--aqua);
+    border-radius: 20px;
+    box-shadow: inset 0 0 25px rgba(62, 243, 255, 0.3);
+    color: var(--soft-cream);
+    text-align: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.3rem);
+    line-height: 1.5;
+    padding: 1rem;
+    width: 85%;
+    margin-bottom: 2vh;
+  }
+
+  .audio-player {
+  
+  padding: 1em 2em;
+  box-shadow: 0 0 2115px;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 2vh;
+  }
+
+ audio {
+  width: 550px;
+ }
+
+  .sentence {
+    background: rgba(11, 26, 58, 0.8);
+    border: 2px solid var(--highlight);
+    border-radius: 15px;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    width: 85%;
+    color: var(--soft-cream);
+    font-weight: 600;
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    text-align: center;
+  }
+
+  .buttons {
+    margin-top: 0.6rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .tf-btn {
+    background: rgba(62, 243, 255, 0.15);
+    border: 2px solid var(--aqua);
+    border-radius: 10px;
+    padding: 0.4rem 1.2rem;
+    color: var(--soft-cream);
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+  }
+
+  .tf-btn:hover {
+    transform: scale(1.08);
+    background: rgba(62, 243, 255, 0.3);
+  }
+
+  .selected {
+    background: var(--highlight);
+    border-color: var(--aqua);
+    box-shadow: 0 0 10px var(--aqua);
+  }
+
+  .button {
+    background: var(--aqua);
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    font-size: clamp(1rem, 1.4vw, 1.5rem);
+    color: var(--deep-blue);
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(62, 243, 255, 0.6);
+    transition: 0.25s;
+    margin-top: 2vh;
+  }
+
+  .button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 30px rgba(62, 243, 255, 0.9);
+  }
+
+  .clue {
+    opacity: 0;
+    transition: opacity 0.6s;
+    text-align: center;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 800;
+    color: var(--aqua);
+    text-shadow: 0 0 20px var(--highlight), 0 0 30px var(--aqua);
+    margin-top: 2vh;
+  }
+
+  .show {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏩 Mission 6 — The Secret Room</h1>
+    <div class="mission-text">
+      At last, you reach the final door. The air is cold, and everything is silent.
+      Dr. Blackwood slowly opens the heavy door and steps inside. Listen carefully to what happens in the Secret Room — the truth about the mask is waiting for you.
+      <br /><br /><b>Task:</b> Listen carefully and decide if the sentences are True or False.
+    </div>
+
+    <div class="audio-player">
+      <audio id="audio" controls>
+        <source src="https://katinkedr.github.io/Quest-lessons/museum/museum.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div id="sentences"></div>
+
+    <button class="button" id="check">Check Answers</button>
+    <div class="clue" id="clue">🔐 Final Clue: “The Mask protects the living.”</div>
+  </div>
+
+<script>
+const data = [
+  { text: 'Dr. Blackwood opened a window in the vault.', answer: 'False' },
+  { text: 'It was bright and warm inside the vault.', answer: 'False' },
+  { text: 'A whisper and a shadow appeared on the wall.', answer: 'True' },
+  { text: 'The mask disappeared forever.', answer: 'False' },
+  { text: 'The spirit of Samhain protected the mask.', answer: 'True' },
+  { text: 'The mystery of Halloween was safe at the end.', answer: 'True' }
+];
+
+const container = document.getElementById('sentences');
+data.forEach((s, i) => {
+  const div = document.createElement('div');
+  div.className = 'sentence';
+  div.innerHTML = `${i + 1}. ${s.text}`;
+
+  const btns = document.createElement('div');
+  btns.className = 'buttons';
+
+  const t = document.createElement('button');
+  t.textContent = 'True';
+  t.className = 'tf-btn';
+
+  const f = document.createElement('button');
+  f.textContent = 'False';
+  f.className = 'tf-btn';
+
+  [t, f].forEach(btn => {
+    btn.addEventListener('click', () => {
+      [t, f].forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      div.dataset.choice = btn.textContent;
+    });
+  });
+
+  btns.append(t, f);
+  div.append(btns);
+  container.append(div);
+});
+
+document.getElementById('check').addEventListener('click', () => {
+  const all = document.querySelectorAll('.sentence');
+  let allCorrect = true;
+  all.forEach((div, i) => {
+    div.classList.remove('ok', 'err');
+    if (div.dataset.choice === data[i].answer) {
+      div.style.borderColor = '#00FF99';
+      div.style.boxShadow = '0 0 15px #00FF99';
+    } else {
+      div.style.borderColor = '#FF5E6C';
+      div.style.boxShadow = '0 0 15px #FF5E6C';
+      allCorrect = false;
+    }
+  });
+  if (allCorrect) document.getElementById('clue').classList.add('show');
+});
+</script>
+</body>
+</html>

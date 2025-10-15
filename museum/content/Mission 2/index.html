@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🕯️ Mission 2 — Hall of Legends</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night-blue: #0E1B25;
+  --stone-blue: #2E5266;
+  --warm-yellow: #FFD972;
+  --pumpkin-orange: #FFB347;
+  --soft-cream: #FFF3B0;
+  --bright-blue: #3A6B73;
+  --muted-blue: #1B3A4B;
+  --glow-outline: #8CF0FF;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: radial-gradient(circle at center, var(--night-blue) 0%, var(--stone-blue) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  border: 4px solid var(--pumpkin-orange);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(255,179,71,0.5), inset 0 0 60px rgba(255,217,114,0.2);
+  background: linear-gradient(rgba(14,27,37,0.45), rgba(14,27,37,0.45)), url('https://katinkedr.github.io/Quest-lessons/museum/hall-2.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.content {
+  z-index: 1;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  padding: 2vh 2vw;
+  overflow-y: auto;
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  color: var(--warm-yellow);
+  text-shadow: 0 0 20px var(--pumpkin-orange);
+  font-size: clamp(1.5rem, 2.8vw, 3rem);
+  text-align: center;
+}
+
+.mission-text {
+  background: rgba(10,5,30,0.75);
+  border: 2px solid var(--pumpkin-orange);
+  border-radius: 20px;
+  box-shadow: inset 0 0 25px rgba(255,179,71,0.3);
+  color: var(--soft-cream);
+  text-align: center;
+  font-size: clamp(0.9rem,1.2vw,1.3rem);
+  line-height: 1.5em;
+  padding: 1rem;
+  width: 85%;
+}
+
+.sentence-container {
+  background: rgba(14,27,37,0.8);
+  border: 2px solid var(--bright-blue);
+  border-radius: 15px;
+  box-shadow: inset 0 0 20px rgba(70,193,255,0.3);
+  padding: 2rem;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--soft-cream);
+  font-size: clamp(1rem,1.2vw,1.3rem);
+  text-align: center;
+}
+
+.blank {
+  display: inline-block;
+  min-width: 140px;
+  background: rgba(70,193,255,0.15);
+  border: 2px solid var(--bright-blue);
+  border-radius: 10px;
+  color: var(--bright-blue);
+  font-weight: 700;
+  text-align: center;
+  padding: 4px 8px;
+  box-shadow: 0 0 12px rgba(70,193,255,0.3), 0 0 6px var(--glow-outline);
+  outline: 2px solid rgba(140,240,255,0.2);
+  outline-offset: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.blank:hover {
+  box-shadow: 0 0 20px var(--glow-outline);
+  transform: scale(1.05);
+}
+
+.word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1vw;
+  margin-top: 2rem;
+}
+
+.word {
+  background: var(--muted-blue);
+  color: var(--soft-cream);
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  cursor: grab;
+  font-size: clamp(1rem,1.3vw,1.4rem);
+  box-shadow: 0 0 15px rgba(70,193,255,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.word:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255,217,114,0.5);
+}
+
+.button {
+  background: var(--pumpkin-orange);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: clamp(1rem,1.4vw,1.5rem);
+  color: var(--night-blue);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,179,71,0.7);
+  transition: all 0.3s;
+  margin-top: 2vh;
+}
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,217,114,0.9);
+}
+
+.clue, .next-text {
+  text-align: center;
+  font-size: clamp(1.4rem,2.5vw,2rem);
+  font-weight: 800;
+  color: var(--warm-yellow);
+  text-shadow: 0 0 20px var(--warm-yellow), 0 0 30px var(--pumpkin-orange);
+  opacity: 0;
+  transition: opacity .6s ease-in-out;
+  margin-top: 2vh;
+}
+
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="content">
+    <h1>🕯️ Mission 2 — Hall of Legends</h1>
+
+    <div class="mission-text">
+      The next room is full of old books and strange drawings. Dr. Blackwood finds a page from an ancient diary. The words are faded, but you can read some of them. To discover what people believed long ago, you need to complete the sentences using the correct words.
+    </div>
+
+    <div class="sentence-container">
+      <div>The <span class="blank" data-answer="ancient" ondragover="event.preventDefault()" ondrop="dropWord(event)"></span> Celts lived more than 2,000 years ago.</div>
+      <div>People believed a dark <span class="blank" data-answer="shadow" ondragover="event.preventDefault()" ondrop="dropWord(event)"></span> moved across the fields at night.</div>
+      <div>The witch said a <span class="blank" data-answer="whisper" ondragover="event.preventDefault()" ondrop="dropWord(event)"></span> spell to protect the mask.</div>
+      <div>The mask tried to <span class="blank" data-answer="hide" ondragover="event.preventDefault()" ondrop="dropWord(event)"></span> from the eyes of strangers.</div>
+      <div>The museum worker thought the object was <span class="blank" data-answer="cursed" ondragover="event.preventDefault()" ondrop="dropWord(event)"></span>.</div>
+      <div>Suddenly, a bright light made the mask <span class="blank" data-answer="appear" ondragover="event.preventDefault()" ondrop="dropWord(event)"></span>.</div>
+    </div>
+
+    <div class="word-bank" id="wordBank"></div>
+
+    <button class="button" onclick="checkAnswers()">Check Answers</button>
+    <div class="clue" id="clue">🔐 Clue 2: “…hidden...”</div>
+    <div class="next-text" id="nextText">Before the next mission, visit the <strong>Chamber of Knowledge</strong> to uncover new secrets...</div>
+  </div>
+</div>
+
+<script>
+const words = ["ancient","shadow","whisper","hide","cursed","appear"];
+const bank = document.getElementById("wordBank");
+const clue = document.getElementById("clue");
+const nextText = document.getElementById("nextText");
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+shuffle(words).forEach(word => {
+  const div = document.createElement("div");
+  div.className = "word";
+  div.textContent = word;
+  div.draggable = true;
+  div.addEventListener("dragstart", e => e.dataTransfer.setData("word", word));
+  bank.appendChild(div);
+});
+
+function dropWord(event) {
+  const draggedWord = event.dataTransfer.getData("word");
+  event.target.textContent = draggedWord;
+  event.target.dataset.chosen = draggedWord;
+  event.target.style.background = "rgba(255,217,114,0.15)";
+  event.target.style.borderColor = "var(--warm-yellow)";
+  event.target.style.color = "var(--warm-yellow)";
+  event.target.style.outline = "2px solid rgba(255,217,114,0.5)";
+}
+
+function checkAnswers() {
+  const blanks = document.querySelectorAll(".blank");
+  let correct = 0;
+  blanks.forEach(b => {
+    if (b.dataset.chosen === b.dataset.answer) {
+      b.style.borderColor = "var(--warm-yellow)";
+      b.style.boxShadow = "0 0 15px var(--warm-yellow)";
+      correct++;
+    } else {
+      b.style.borderColor = "red";
+    }
+  });
+  if (correct === blanks.length) {
+    clue.classList.add("show");
+    setTimeout(() => nextText.classList.add("show"), 800);
+  }
+}
+</script>
+</body>
+</html>

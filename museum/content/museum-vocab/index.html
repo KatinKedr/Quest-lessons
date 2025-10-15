@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halloween Quest – Hall of Words</title>
+<style>
+  :root {
+    --night-blue: #0E1B25;
+    --museum-teal: #1B3A4B;
+    --stone-blue: #2E5266;
+    --fog-green: #3A6B73;
+    --warm-yellow: #FFD972;
+    --pumpkin-orange: #FFB347;
+    --soft-cream: #FFF3B0;
+    --shadow-black: #0A0A0A;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--night-blue);
+    color: var(--soft-cream);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .container {
+    background-color: var(--museum-teal);
+    border: 3px solid var(--pumpkin-orange);
+    border-radius: 25px;
+    box-shadow: 0 0 25px var(--pumpkin-orange), inset 0 0 15px var(--warm-yellow);
+    padding: 40px 5%;
+    margin: 40px;
+    max-width: 850px;
+    text-align: center;
+  }
+
+  h1 {
+    color: var(--warm-yellow);
+    text-shadow: 0 0 15px var(--pumpkin-orange);
+    margin-bottom: 35px;
+    font-size: clamp(1.6em, 4vw, 2.5em);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px 35px;
+    justify-items: center;
+  }
+
+  .word {
+    background: var(--warm-yellow);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    color: var(--night-blue);
+    font-size: clamp(1em, 2vw, 1.2em);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px var(--pumpkin-orange), 0 0 25px rgba(255, 217, 114, 0.4);
+    min-width: 120px;
+  }
+
+  .word:hover {
+    background: var(--pumpkin-orange);
+    color: var(--soft-cream);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--pumpkin-orange), 0 0 40px var(--warm-yellow);
+  }
+
+  .translation {
+    display: block;
+    font-weight: 700;
+    color: var(--soft-cream);
+    opacity: 0;
+    margin-top: 8px;
+    font-size: clamp(0.9em, 1.5vw, 1.1em);
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .show {
+    opacity: 1;
+  }
+
+  .hint {
+    margin-top: 50px;
+    font-size: clamp(1em, 2vw, 1.3em);
+    font-weight: 600;
+    color: var(--pumpkin-orange);
+    text-shadow: 0 0 12px var(--warm-yellow);
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 30px 20px;
+    }
+    .grid {
+      gap: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎃 Hall of Words</h1>
+    <div class="grid">
+      <div><button class="word" onclick="toggle(this)">Spirit</button><span class="translation">дух</span></div>
+      <div><button class="word" onclick="toggle(this)">Bonfire</button><span class="translation">багаття</span></div>
+      <div><button class="word" onclick="toggle(this)">Noise</button><span class="translation">шум</span></div>
+      <div><button class="word" onclick="toggle(this)">Disappear</button><span class="translation">зникати</span></div>
+      <div><button class="word" onclick="toggle(this)">Ancient</button><span class="translation">давній</span></div>
+      <div><button class="word" onclick="toggle(this)">Cursed</button><span class="translation">проклятий</span></div>
+      <div><button class="word" onclick="toggle(this)">Shadow</button><span class="translation">тінь</span></div>
+      <div><button class="word" onclick="toggle(this)">Whisper</button><span class="translation">шепіт</span></div>
+      <div><button class="word" onclick="toggle(this)">Hide</button><span class="translation">ховати</span></div>
+      <div><button class="word" onclick="toggle(this)">Scream</button><span class="translation">крик</span></div>
+      <div><button class="word" onclick="toggle(this)">Mystery</button><span class="translation">таємниця</span></div>
+      <div><button class="word" onclick="toggle(this)">Appear</button><span class="translation">з'являтися</span></div>
+    </div>
+
+    <div class="hint">
+      ✨ Now you are ready to go to Hall of Symbols
+    </div>
+  </div>
+
+<script>
+function toggle(button) {
+  const translation = button.nextElementSibling;
+  translation.classList.toggle("show");
+}
+</script>
+</body>
+</html>

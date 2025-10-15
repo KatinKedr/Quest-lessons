@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🎭 Guess What Mask I Am</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --deep-blue: #0b1a3a;
+    --aqua: #3ef3ff;
+    --highlight: #4e92e0;
+    --soft-cream: #fefaf3;
+    --inner-bg: #13213b;
+    --accent: #ff66cc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--deep-blue);
+    font-family: 'Nunito', sans-serif;
+    color: var(--soft-cream);
+  }
+  .container {
+    background: linear-gradient(160deg, var(--inner-bg), #0e1a32);
+    border: 3px solid var(--aqua);
+    border-radius: 25px;
+    box-shadow: inset 0 0 25px var(--aqua), 0 0 35px rgba(62,243,255,0.4);
+    width: 90%;
+    max-width: 1100px;
+    padding: 2rem;
+    text-align: center;
+    overflow-y: auto;
+    position: relative;
+  }
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--aqua);
+    text-shadow: 0 0 20px var(--highlight);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .rules {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid var(--aqua);
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    width: 85%;
+    margin: 0 auto 2rem;
+    font-size: clamp(1rem,1.2vw,1.3rem);
+    line-height: 1.6;
+    box-shadow: inset 0 0 20px rgba(78,146,224,0.5);
+  }
+  .mask-grid-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .mask-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 25px;
+    width: 90%;
+    margin: 0 auto;
+    justify-items: center;
+    position: relative;
+  }
+  .mask {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    cursor: pointer;
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+  }
+  .mask:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 25px var(--aqua), 0 0 40px var(--accent);
+    filter: brightness(1.15) drop-shadow(0 0 10px var(--aqua));
+  }
+  .letters {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 auto 10px;
+    font-weight: 800;
+    color: var(--aqua);
+  }
+  .numbers {
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: calc(100% - 25px);
+    padding-left: 0;
+    font-weight: 800;
+    color: var(--aqua);
+  }
+  .letters span, .numbers span {
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .letters span:hover, .numbers span:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--aqua);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎭 Guess What Mask I Am</h1>
+    <div class="rules">
+      One student secretly chooses a mask. Others take turns asking <b>Yes/No</b> questions to guess which mask was chosen. The player can answer only with “Yes” or “No.” The student who guesses correctly chooses the next mask!
+    </div>
+
+    <div class="mask-grid-wrapper">
+      <div class="numbers">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+      </div>
+      <div style="width: 100%;">
+        <div class="letters">
+          <span>A</span><span>B</span><span>C</span>
+        </div>
+        <div class="mask-grid">
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/Mask1.png" class="mask" alt="mask1" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask2.png" class="mask" alt="mask2" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask3.png" class="mask" alt="mask3" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask4.png" class="mask" alt="mask4" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask5.png" class="mask" alt="mask5" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask6.png" class="mask" alt="mask6" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask7.png" class="mask" alt="mask7" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask8.png" class="mask" alt="mask8" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask9.png" class="mask" alt="mask9" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask10.png" class="mask" alt="mask10" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask11.png" class="mask" alt="mask11" />
+          <img src="https://katinkedr.github.io/Quest-lessons/museum/mask12.png" class="mask" alt="mask12" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

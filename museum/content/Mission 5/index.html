@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by KatinKedr (http://jsbin.com/lufibaj/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🧪 Mission 5 — Hall of Ancient Celebrations</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --night-blue:#0B1520;
+    --stone-blue:#253B4A;
+    --warm-yellow:#FFD972;
+    --pumpkin-orange:#FFB347;
+    --soft-cream:#FFF3B0;
+    --bright-blue:#3A6B73;
+    --error:#FF5E6C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    height:100vh;display:flex;justify-content:center;align-items:center;
+    background:radial-gradient(circle at center,var(--night-blue) 0%,var(--stone-blue) 100%);
+    font-family:'Nunito',sans-serif;overflow:hidden;
+  }
+  .container{width:90vw;height:90vh;border:4px solid var(--pumpkin-orange);border-radius:30px;
+    box-shadow:0 0 40px rgba(255,179,71,.5),inset 0 0 60px rgba(255,217,114,.2);
+    background:url('https://katinkedr.github.io/Quest-lessons/museum/hall-5.jpg') center/cover no-repeat;
+    display:flex;flex-direction:column;align-items:center;overflow:hidden;position:relative}
+  .overlay{position:absolute;inset:0;background:rgba(10,10,20,0.45);z-index:0}
+  .content{z-index:1;width:95%;display:flex;flex-direction:column;align-items:center;gap:2vh;padding:2vh 2vw;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--warm-yellow) transparent}
+  .content::-webkit-scrollbar{width:10px}.content::-webkit-scrollbar-thumb{background:var(--warm-yellow);border-radius:5px}
+  h1{font-family:'Fredoka One',cursive;color:var(--warm-yellow);text-shadow:0 0 20px var(--pumpkin-orange);font-size:clamp(1.5rem,2.8vw,3rem);text-align:center}
+  .mission-text{background:rgba(10,5,30,.75);border:2px solid var(--pumpkin-orange);border-radius:20px;box-shadow:inset 0 0 25px rgba(255,179,71,.3);color:var(--soft-cream);text-align:center;font-size:clamp(.9rem,1.2vw,1.3rem);line-height:1.5;padding:1rem;width:85%}
+  .image-container{width:85%;height:50vh;border:3px solid var(--bright-blue);border-radius:20px;box-shadow:0 0 25px rgba(58,107,115,.8);background-color:rgba(14,27,37,0.85);padding:.5rem}
+  .image-container img{width:100%;height:auto;display:block;border-radius:10px}
+  .sentence-box{background:rgba(14,27,37,.85);border:2px solid var(--bright-blue);border-radius:15px;box-shadow:inset 0 0 20px rgba(58,107,115,.35);padding:1rem;width:85%;margin-top:1.5rem;text-align:center;color:var(--soft-cream)}
+  .words{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:1rem}
+  .word{background:rgba(255,217,114,.15);border:2px solid var(--bright-blue);border-radius:10px;padding:.5rem 1rem;cursor:grab;transition:.3s;font-weight:700;color:var(--soft-cream)}
+  .word.hidden{opacity:.3;pointer-events:none}
+  .word:hover{transform:scale(1.05);background:rgba(255,217,114,.3)}
+  .dropzone{min-height:50px;border:2px dashed var(--bright-blue);border-radius:10px;padding:.5rem;margin-top:.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;color:var(--soft-cream);gap:.4rem}
+  .dropzone .word{cursor:pointer}
+  .ok{border-color:var(--warm-yellow)!important;box-shadow:0 0 15px rgba(255,217,114,.8)!important}
+  .err{border-color:var(--error)!important;box-shadow:0 0 12px rgba(255,94,108,.8)!important}
+  .button{background:var(--pumpkin-orange);border:none;border-radius:10px;padding:.6rem 1.5rem;font-size:clamp(1rem,1.4vw,1.5rem);color:var(--night-blue);font-weight:800;cursor:pointer;box-shadow:0 0 20px rgba(255,179,71,.7);transition:.25s;margin-top:2vh}
+  .button:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(255,217,114,.9)}
+  .clue{opacity:0;transition:opacity .6s;text-align:center;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;color:var(--warm-yellow);text-shadow:0 0 20px var(--warm-yellow),0 0 30px var(--pumpkin-orange);margin-top:2vh}
+  .show{opacity:1}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>🧪 Mission 5 — Hall of Ancient Celebrations</h1>
+    <div class="mission-text">The room glows with firelight and autumn colors. A large painting shows an ancient Halloween celebration. Drag the words into the correct order to describe the scene.</div>
+
+    <div class="image-container">
+      <img src="https://katinkedr.github.io/Quest-lessons/museum/picture.png" alt="Ancient celebration scene" />
+    </div>
+
+    <!-- Six sentences -->
+    <div class="sentence-box" data-answer="The ancient people wore strange costumes">
+      <div class="words">
+        <div class="word" draggable="true">ancient</div><div class="word" draggable="true">people</div><div class="word" draggable="true">costumes</div><div class="word" draggable="true">wore</div><div class="word" draggable="true">strange</div><div class="word" draggable="true">the</div>
+      </div>
+      <div class="dropzone"></div>
+    </div>
+
+    <div class="sentence-box" data-answer="They made a big bonfire and danced around it">
+      <div class="words">
+        <div class="word" draggable="true">bonfire</div><div class="word" draggable="true">a</div><div class="word" draggable="true">big</div><div class="word" draggable="true">they</div><div class="word" draggable="true">made</div><div class="word" draggable="true">and</div><div class="word" draggable="true">danced</div><div class="word" draggable="true">around</div><div class="word" draggable="true">it</div>
+      </div>
+      <div class="dropzone"></div>
+    </div>
+
+    <div class="sentence-box" data-answer="People lit candles to protect the good spirit">
+      <div class="words">
+        <div class="word" draggable="true">spirit</div><div class="word" draggable="true">good</div><div class="word" draggable="true">the</div><div class="word" draggable="true">protect</div><div class="word" draggable="true">to</div><div class="word" draggable="true">candles</div><div class="word" draggable="true">people</div><div class="word" draggable="true">lit</div>
+      </div>
+      <div class="dropzone"></div>
+    </div>
+
+    <div class="sentence-box" data-answer="The witch quietly said her magic whisper spell">
+      <div class="words">
+        <div class="word" draggable="true">the</div><div class="word" draggable="true">whisper</div><div class="word" draggable="true">witch</div><div class="word" draggable="true">spell</div><div class="word" draggable="true">her</div><div class="word" draggable="true">said</div><div class="word" draggable="true">quietly</div><div class="word" draggable="true">magic</div>
+      </div>
+      <div class="dropzone"></div>
+    </div>
+
+    <div class="sentence-box" data-answer="People believed the mask could protect them">
+      <div class="words">
+        <div class="word" draggable="true">the</div><div class="word" draggable="true">mask</div><div class="word" draggable="true">protect</div><div class="word" draggable="true">believed</div><div class="word" draggable="true">people</div><div class="word" draggable="true">could</div><div class="word" draggable="true">them</div>
+      </div>
+      <div class="dropzone"></div>
+    </div>
+
+    <div class="sentence-box" data-answer="The night of Halloween kept an old mystery">
+      <div class="words">
+        <div class="word" draggable="true">mystery</div><div class="word" draggable="true">old</div><div class="word" draggable="true">an</div><div class="word" draggable="true">the</div><div class="word" draggable="true">night</div><div class="word" draggable="true">of</div><div class="word" draggable="true">Halloween</div><div class="word" draggable="true">kept</div>
+      </div>
+      <div class="dropzone"></div>
+    </div>
+
+    <button class="button" id="check">Check Answers</button>
+    <div class="clue" id="clue">🔐 Clue 5: “...truth...”</div>
+  </div>
+</div>
+<script>
+// --- Drag & drop with safe source tracking ---
+let dragged = null;
+let dragId = null; // id of the source word being dragged
+
+const boxes = document.querySelectorAll('.sentence-box');
+const clue = document.getElementById('clue');
+const check = document.getElementById('check');
+
+// Give each source word a unique id scoped to the page
+let uid = 0;
+document.querySelectorAll('.sentence-box .words .word').forEach(w => {
+  w.dataset.id = 'w' + (++uid);
+  w.addEventListener('dragstart', () => { dragged = w; dragId = w.dataset.id; });
+});
+
+// Allow dropping into any dropzone; create a clone which remembers its source id
+function makeCloneFrom(source){
+  const clone = source.cloneNode(true);
+  clone.draggable = false;
+  clone.classList.remove('hidden');
+  clone.dataset.sourceId = source.dataset.id;
+  // Remove this placed word -> unhide the original source
+  clone.addEventListener('click', () => {
+    const original = document.querySelector(`.words .word[data-id="${clone.dataset.sourceId}"]`);
+    if (original) original.classList.remove('hidden');
+    clone.remove();
+  });
+  return clone;
+}
+
+document.querySelectorAll('.dropzone').forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    if (!dragged) return;
+    // Append clone and hide original
+    zone.appendChild(makeCloneFrom(dragged));
+    dragged.classList.add('hidden');
+    dragged = null; dragId = null;
+  });
+});
+
+// Check answers
+check.addEventListener('click', () => {
+  let allOk = true;
+  boxes.forEach(box => {
+    const zone = box.querySelector('.dropzone');
+    if (!zone) return; // safety
+    const user = Array.from(zone.children).map(el => el.textContent).join(' ').trim().toLowerCase();
+    const correct = box.dataset.answer.trim().toLowerCase();
+    box.classList.remove('ok','err');
+    if (user === correct) box.classList.add('ok'); else { box.classList.add('err'); allOk = false; }
+  });
+  if (allOk) clue.classList.add('show');
+});
+</script>
+</body>
+</html>
