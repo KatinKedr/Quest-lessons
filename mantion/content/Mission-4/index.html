@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎧 Halloween Quest — The Haunted Broadcast</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-stone: #1A2233;
+  --mystic-blue: #5CC8FF;
+  --fire-yellow: #FFB347;
+  --light-cream: #FFF3B0;
+  --lightning: #C8D6E8;
+}
+
+body {
+  margin: 0;
+  background: var(--dark-stone);
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/room4.jpg') center/cover no-repeat;
+  border: 3px solid var(--lightning);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(200,214,232,0.6);
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.ghost {
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  width: 28%;
+  height: 75%;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/char4.png') center/contain no-repeat;
+  filter: drop-shadow(0 0 35px white) brightness(1.2);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+
+.content {
+  flex: 1;
+  margin-left: 25%;
+  background: rgba(10,5,20,0.75);
+  border-radius: 15px;
+  border: 2px solid var(--lightning);
+  box-shadow: inset 0 0 40px rgba(200,214,232,0.4);
+  padding: 2rem;
+  color: var(--light-cream);
+  height: 80%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--fire-yellow);
+  text-shadow: 0 0 20px var(--mystic-blue);
+  font-size: clamp(2rem,3vw,3rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  background: rgba(30,20,10,0.6);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 15px;
+  padding: 1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(255,179,71,0.3);
+  margin-bottom: 1.5rem;
+}
+
+.task {
+  background: rgba(20,10,30,0.7);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 1rem;
+  color: var(--light-cream);
+  text-align: left;
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+select {
+  background: rgba(255,243,176,0.9);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 8px;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  background: var(--mystic-blue);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(92,200,255,0.6);
+  transition: 0.3s;
+}
+
+.button:hover { background: var(--fire-yellow); transform: scale(1.05); box-shadow: 0 0 30px rgba(255,179,71,0.9); }
+
+.fact {
+  margin-top: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background: rgba(50,25,10,0.8);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="ghost"></div>
+    <div class="content">
+      <h1>🎧 Mission 4 — The Haunted Broadcast</h1>
+      <div class="intro">
+        A burst of static fills the air as Ellionor enters a dusty old room. A radio from the 1950s crackles to life, playing half‑forgotten Halloween tunes. The smell of ozone and metal mixes with the hum of electricity. The voice on the radio laughs faintly.
+      </div>
+
+      <div class="task" id="quiz">
+        <p>The old radio began to <select><option value="">--Choose--</option></select> the empty house late at night.</p>
+        <p>A glowing <select><option value="">--Choose--</option></select> flickered on the windowsill as the storm began.</p>
+        <p>The announcer’s voice spoke like a restless <select><option value="">--Choose--</option></select>.</p>
+        <p>Outside, a child in a strange <select><option value="">--Choose--</option></select> knocked on the door for candy.</p>
+        <p>On the table lay an <select><option value="">--Choose--</option></select> of cookies for visitors from beyond.</p>
+        <p>The echo of thunder felt like an <select><option value="">--Choose--</option></select> warning.</p>
+      </div>
+
+      <button class="button" onclick="checkAnswers()">Check Answers</button>
+      <div class="fact" id="fact">
+        “After the war, Americans needed hope and community. Halloween became a night of laughter and creativity, where neighborhoods united in shared joy. Children went door‑to‑door collecting sweets, parents hosted parties, and homes glowed with carved pumpkins. What once was fear turned into friendship — the power of tradition reborn.”
+      </div>
+    </div>
+  </div>
+
+<script>
+const words = ['haunt','lantern','spirit','disguise','offering','omen'];
+const answers = ['haunt','lantern','spirit','disguise','offering','omen'];
+
+const selects = document.querySelectorAll('select');
+selects.forEach(select => {
+  words.sort(() => Math.random() - 0.5).forEach(w => {
+    const opt = document.createElement('option');
+    opt.value = w;
+    opt.textContent = w;
+    select.appendChild(opt);
+  });
+});
+
+function checkAnswers() {
+  let correct = 0;
+  selects.forEach((s, i) => {
+    if (s.value === answers[i]) {
+      s.style.borderColor = 'lime';
+      correct++;
+    } else s.style.borderColor = 'red';
+  });
+  if (correct === answers.length) document.getElementById('fact').classList.add('show');
+}
+</script>
+</body>
+</html>

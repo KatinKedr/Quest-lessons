@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2025 by KatinKedr (http://jsbin.com/lufibaj/6/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎭 Halloween Quest — The Mirror of Masks</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-stone: #1A2233;
+  --mystic-blue: #5CC8FF;
+  --fire-yellow: #FFB347;
+  --light-cream: #FFF3B0;
+  --lighning: #C8D6E8
+}
+
+body {
+  margin: 0;
+  background: var(--dark-stone);
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/room2.jpg') center/cover no-repeat;
+  border: 3px solid var(--lighning);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255,179,71,0.4);
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.ghost {
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  width: 28%;
+  height: 75%;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/char2.png') center/contain no-repeat;
+  filter: drop-shadow(0 0 35px white) brightness(1.2);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+
+.content {
+  flex: 1;
+  margin-left: 25%;
+  background: rgba(10,5,20,0.75);
+  border-radius: 15px;
+  border: 2px solid var(--fire-yellow);
+  box-shadow: inset 0 0 40px rgba(255,179,71,0.4);
+  padding: 2rem;
+  color: var(--light-cream);
+  height: 80%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--fire-yellow);
+  text-shadow: 0 0 20px var(--mystic-blue);
+  font-size: clamp(2rem,3vw,3rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  background: rgba(30,20,10,0.6);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 15px;
+  padding: 1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(92,200,255,0.3);
+  margin-bottom: 1.5rem;
+}
+
+.fill-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.sentence {
+  background: rgba(20,10,30,0.7);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  width: 80%;
+  color: var(--light-cream);
+  position: relative;
+}
+
+.blank {
+  display: inline-block;
+  min-width: 100px;
+  padding: 0.2rem 0.5rem;
+  background: rgba(92,200,255,0.15);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  color: var(--light-cream);
+  cursor: pointer;
+}
+
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.word {
+  background: rgba(20,30,60,0.8);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: var(--light-cream);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.word:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px var(--mystic-blue);
+}
+
+.button {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  background: var(--mystic-blue);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(92,200,255,0.6);
+  transition: 0.3s;
+}
+
+.button:hover { background: var(--fire-yellow); transform: scale(1.05); box-shadow: 0 0 30px rgba(255,179,71,0.9); }
+
+.fact {
+  margin-top: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background: rgba(50,25,10,0.8);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="ghost"></div>
+    <div class="content">
+      <h1>🎭 Mission 2 — The Mirror of Masks</h1>
+      <div class="intro">
+        The next door opens into a hall of mirrors. Hundreds of reflections blink back at Ellionor. Some smile, others move on their own. Masks of every color and shape hang from the ceiling. A whisper says, “Choose the right face, or lose your own.” The light flickers blue, and the air turns cold.
+      </div>
+
+      <div class="fill-task" id="task">
+        <div class="sentence">1. The old druid began a mysterious <span class="blank" data-answer="ritual"></span>.</div>
+        <div class="sentence">2. A thin <span class="blank" data-answer="veil"></span> separated the world of the living from the dead.</div>
+        <div class="sentence">3. The ghostly <span class="blank" data-answer="spirit"></span> whispered softly through the hall.</div>
+        <div class="sentence">4. The girl wore a clever <span class="blank" data-answer="disguise"></span> to hide her identity.</div>
+        <div class="sentence">5. Everyone heard a rhythmic <span class="blank" data-answer="chant"></span> echo from the walls.</div>
+        <div class="sentence">6. A strange <span class="blank" data-answer="omen"></span> appeared before the mirror.</div>
+      </div>
+
+      <div class="word-list" id="wordList"></div>
+
+      <button class="button" onclick="checkAnswers()">Check Answers</button>
+      <div class="fact" id="fact">
+        “In Scotland, the ancient tradition of guising allowed children to wear disguises and visit homes, singing songs or telling jokes for treats. This ritual was believed to protect them from spirits roaming freely that night. Their laughter and songs blessed the homes they visited, turning fear into celebration — the origin of modern trick‑or‑treating.”
+      </div>
+    </div>
+  </div>
+
+<script>
+const words = ['ritual', 'veil', 'spirit', 'disguise', 'chant', 'omen'];
+const wordList = document.getElementById('wordList');
+const blanks = document.querySelectorAll('.blank');
+
+function shuffle(array) { return array.sort(() => Math.random() - 0.5); }
+
+function renderWords() {
+  wordList.innerHTML = '';
+  shuffle(words).forEach(word => {
+    const div = document.createElement('div');
+    div.classList.add('word');
+    div.textContent = word;
+    div.draggable = true;
+    div.addEventListener('dragstart', e => e.dataTransfer.setData('text', word));
+    div.addEventListener('click', () => {
+      const emptyBlank = [...blanks].find(b => !b.textContent);
+      if (emptyBlank) {
+        emptyBlank.textContent = word;
+        emptyBlank.dataset.filled = word;
+        div.remove();
+      }
+    });
+    wordList.appendChild(div);
+  });
+}
+
+blanks.forEach(blank => {
+  blank.addEventListener('dragover', e => e.preventDefault());
+  blank.addEventListener('drop', e => {
+    const word = e.dataTransfer.getData('text');
+    if (word) {
+      blank.textContent = word;
+      blank.dataset.filled = word;
+      const usedWord = [...wordList.children].find(w => w.textContent === word);
+      if (usedWord) usedWord.remove();
+    }
+  });
+  blank.addEventListener('click', () => {
+    if (blank.dataset.filled) {
+      const word = blank.dataset.filled;
+      blank.textContent = '';
+      blank.dataset.filled = '';
+      const div = document.createElement('div');
+      div.classList.add('word');
+      div.textContent = word;
+      div.addEventListener('click', () => {
+        const emptyBlank = [...blanks].find(b => !b.textContent);
+        if (emptyBlank) {
+          emptyBlank.textContent = word;
+          emptyBlank.dataset.filled = word;
+          div.remove();
+        }
+      });
+      wordList.appendChild(div);
+    }
+  });
+});
+
+function checkAnswers() {
+  let correct = 0;
+  blanks.forEach(blank => {
+    if (blank.dataset.filled === blank.dataset.answer) {
+      blank.style.borderColor = 'lime';
+      correct++;
+    } else {
+      blank.style.borderColor = 'red';
+    }
+  });
+  if (correct === blanks.length) document.getElementById('fact').classList.add('show');
+}
+
+renderWords();
+</script>
+</body>
+</html>

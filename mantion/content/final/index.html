@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏰 Final Mission — The Hall of Spirits</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-blue: #0E1B25;
+  --moonlight: #C8D6E8;
+  --golden-glow: #FFD972;
+  --soft-white: #F9F9F9;
+  --aura-blue: #AEE2FF;
+}
+body {
+  margin: 0;
+  background: var(--dark-blue);
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.container {
+  position: relative;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/door.jpg') center/cover no-repeat;
+  border: 3px solid var(--moonlight);
+  border-radius: 25px;
+  box-shadow: 0 0 40px var(--moonlight);
+  width: 90vw;
+  height: 88vh;
+  padding: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.intro {
+  background: rgba(14,27,37,0.8);
+  border: 2px solid var(--golden-glow);
+  border-radius: 15px;
+  padding: 1.5rem;
+  color: var(--soft-white);
+  font-size: 1.1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255,217,114,0.5);
+  margin-bottom: 1rem;
+}
+.spirits {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 4rem; /* опущено нижче */
+  margin-bottom: 2rem;
+}
+.spirit {
+  position: relative;
+  width: 12%;
+  height: 45vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 0 40px white);
+  animation: float 5s ease-in-out infinite;
+}
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.slot {
+  margin-top: 1rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, rgba(174,226,255,0.2) 60%, rgba(200,230,255,0.15) 100%);
+  color: var(--soft-white);
+  font-weight: bold;
+  text-align: center;
+  padding: 0.6rem 0.8rem;
+  min-height: 2rem;
+  box-shadow: 0 0 15px rgba(174,226,255,0.5), inset 0 0 10px rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+.slot:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(200,230,255,0.8), inset 0 0 20px rgba(255,255,255,0.5);
+}
+.words {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.word {
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.95), rgba(174,226,255,0.85));
+  border: 2px solid var(--aura-blue);
+  border-radius: 15px;
+  color: #001F33;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  cursor: grab;
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(174,226,255,0.7), inset 0 0 15px rgba(255,255,255,0.5);
+}
+.word:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(174,226,255,1);
+}
+.button {
+  background: var(--golden-glow);
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,217,114,0.6);
+  transition: 0.3s;
+}
+.button:hover { transform: scale(1.1); box-shadow: 0 0 40px var(--golden-glow); }
+.fact {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  margin-top: 1.5rem;
+  background: rgba(14,27,37,0.8);
+  border: 2px solid var(--golden-glow);
+  border-radius: 15px;
+  color: var(--soft-white);
+  padding: 1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255,217,114,0.4);
+}
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="intro">
+    Ellionor finally reaches the grand hall of the manor. All six spirits she met before are gathered around her — glowing gently in a circle of light. Each holds a symbol from their homeland: fire, masks, colors, radio waves, lanterns, and whispers. The air hums softly as they speak together: “Now, Ellionor, your final task is to join each of us with the land we came from. When you do, the Hall will reveal its secret.”
+  </div>
+
+  <div class="spirits">
+    <div class="spirit" style="background-image:url('https://katinkedr.github.io/Quest-lessons/mantion/char1.png')"><div class="slot" data-correct="Ireland"></div></div>
+    <div class="spirit" style="background-image:url('https://katinkedr.github.io/Quest-lessons/mantion/char2.png')"><div class="slot" data-correct="Scotland"></div></div>
+    <div class="spirit" style="background-image:url('https://katinkedr.github.io/Quest-lessons/mantion/char3.png')"><div class="slot" data-correct="Mexico"></div></div>
+    <div class="spirit" style="background-image:url('https://katinkedr.github.io/Quest-lessons/mantion/char4.png')"><div class="slot" data-correct="USA"></div></div>
+    <div class="spirit" style="background-image:url('https://katinkedr.github.io/Quest-lessons/mantion/char5.png')"><div class="slot" data-correct="Japan"></div></div>
+    <div class="spirit" style="background-image:url('https://katinkedr.github.io/Quest-lessons/mantion/char6.png')"><div class="slot" data-correct="Ukraine"></div></div>
+  </div>
+
+  <div class="words" id="wordBank"></div>
+  <button class="button" onclick="checkAnswers()">Reveal the Secret</button>
+  <div class="fact" id="fact">When all spirits are united with their countries, their voices merge into one: “Across every culture, we used fire, light, and rituals not to frighten, but to remember and protect. The true bond that connects us all is memory — the love of those who came before.”</div>
+</div>
+<script>
+const countries = ['Ireland','Scotland','Mexico','USA','Japan','Ukraine'];
+const wordBank = document.getElementById('wordBank');
+
+countries.sort(() => Math.random() - 0.5);
+
+countries.forEach(name => {
+  const div = document.createElement('div');
+  div.className = 'word';
+  div.textContent = name;
+  div.draggable = true;
+  div.dataset.name = name;
+  div.addEventListener('dragstart', e => e.dataTransfer.setData('name', name));
+  wordBank.appendChild(div);
+});
+
+document.querySelectorAll('.slot').forEach(slot => {
+  slot.addEventListener('dragover', e => e.preventDefault());
+  slot.addEventListener('drop', e => {
+    const name = e.dataTransfer.getData('name');
+    slot.textContent = name;
+    const word = document.querySelector(`.word[data-name='${name}']`);
+    if (word) word.remove();
+  });
+});
+
+function checkAnswers() {
+  let correct = 0;
+  document.querySelectorAll('.slot').forEach(slot => {
+    if (slot.textContent === slot.dataset.correct) {
+      correct++;
+      slot.style.borderColor = 'lime';
+      slot.style.boxShadow = '0 0 25px lime';
+    } else {
+      slot.style.borderColor = 'red';
+    }
+  });
+  if (correct === 6) document.getElementById('fact').classList.add('show');
+}
+</script>
+</body>
+</html>

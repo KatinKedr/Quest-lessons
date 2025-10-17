@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 Magical Vocabulary</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Raleway:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-blue: #0E1B25;
+  --moonlight: #C8D6E8;
+  --golden-glow: #FFD972;
+  --soft-white: #F9F9F9;
+  --aura-blue: #AEE2FF;
+}
+body {
+  margin: 0;
+  background: var(--dark-blue);
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.container {
+  background: linear-gradient(160deg, #13293D 0%, #1C3B50 100%);
+  border: 3px solid var(--moonlight);
+  border-radius: 25px;
+  box-shadow: 0 0 50px rgba(200,214,232,0.5);
+  width: 85vw;
+  height: 90vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--soft-white);
+  overflow-y: auto;
+}
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--golden-glow);
+  text-shadow: 0 0 25px var(--golden-glow);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.words {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+  justify-items: center;
+}
+.word {
+  background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(174,226,255,0.9));
+  border: 2px solid var(--aura-blue);
+  border-radius: 20px;
+  color: #001F33;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem;
+  width: 90%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 25px rgba(174,226,255,0.7), inset 0 0 15px rgba(255,255,255,0.4);
+  position: relative;
+  overflow: hidden;
+}
+.word:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(174,226,255,0.9);
+}
+.definition {
+  display: none;
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+  background: rgba(14,27,37,0.85);
+  border-radius: 10px;
+  border: 1px solid var(--golden-glow);
+  padding: 0.8rem;
+  color: var(--soft-white);
+  box-shadow: inset 0 0 15px rgba(255,217,114,0.5);
+  animation: fadeIn 0.4s ease-in-out;
+}
+.show-def {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📖 Magical Vocabulary</h1>
+  <div class="words" id="wordList"></div>
+</div>
+<script>
+const vocab = {
+  'Spirit': 'the soul of a dead person, often believed to appear as a ghost.',
+  'Disguise': 'clothes or appearance used to hide someone’s identity.',
+  'Lantern': 'a light inside a container, used during celebrations.',
+  'Offering': 'a gift, often of food or flowers, given in respect or memory.',
+  'Altar': 'a special table used in ceremonies.',
+  'Haunt': 'to appear as a ghost.',
+  'Ancestral': 'connected to family members from the past.',
+  'Chant': 'words repeated rhythmically, often in rituals.',
+  'Summon': 'to call upon someone or something magically.',
+  'Omen': 'a sign believed to predict the future.',
+  'Veil': 'a barrier between worlds.'
+};
+
+const list = document.getElementById('wordList');
+
+Object.keys(vocab).forEach(word => {
+  const div = document.createElement('div');
+  div.className = 'word';
+  div.innerHTML = `<span>${word}</span><div class='definition'>${vocab[word]}</div>`;
+  div.addEventListener('click', () => {
+    const def = div.querySelector('.definition');
+    def.classList.toggle('show-def');
+  });
+  list.appendChild(div);
+});
+</script>
+</body>
+</html>
