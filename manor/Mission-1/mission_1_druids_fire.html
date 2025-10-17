@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Halloween Quest — The Druid’s Fire (B2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-stone: #1A2233;
+  --fire-orange: #FF7033;
+  --fire-yellow: #FFB347;
+  --light-cream: #FFF3B0;
+}
+body {
+  margin: 0;
+  background: var(--dark-stone);
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.container {
+  position: relative;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/room1.jpg') center/cover no-repeat;
+  border: 3px solid var(--fire-yellow);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(255,179,71,0.4);
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+.ghost {
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  width: 28%;
+  height: 75%;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/char1.png') center/contain no-repeat;
+  filter: drop-shadow(0 0 35px white) brightness(1.2);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+.content {
+  flex: 1;
+  margin-left: 25%;
+  background: rgba(10,5,20,0.75);
+  border-radius: 15px;
+  border: 2px solid var(--fire-yellow);
+  box-shadow: inset 0 0 40px rgba(255,179,71,0.4);
+  padding: 2rem;
+  color: var(--light-cream);
+  height: 80%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--fire-yellow);
+  text-shadow: 0 0 20px var(--fire-orange);
+  font-size: clamp(2rem,3vw,3rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.intro {
+  background: rgba(30,20,10,0.6);
+  border: 2px solid var(--fire-orange);
+  border-radius: 15px;
+  padding: 1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(255,112,51,0.3);
+  margin-bottom: 1.5rem;
+}
+.match-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.term-column, .definition-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.card, .definition {
+  display: inline-block;
+  text-align: center;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 0.6rem 1rem;
+  min-width: 100px;
+  max-width: 180px;
+}
+.card {
+  background: rgba(43,30,20,0.8);
+  border: 2px solid var(--fire-yellow);
+  color: var(--light-cream);
+  cursor: pointer;
+}
+.card:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--fire-yellow); }
+.definition {
+  background: rgba(20,10,5,0.8);
+  border: 2px dashed var(--fire-orange);
+  color: var(--light-cream);
+}
+.definition:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--fire-orange); }
+.button {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  background: var(--fire-orange);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(255,112,51,0.6);
+  transition: 0.3s;
+}
+.button:hover { background: var(--fire-yellow); transform: scale(1.05); box-shadow: 0 0 30px rgba(255,179,71,0.9); }
+.fact {
+  margin-top: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background: rgba(50,25,10,0.8);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="ghost"></div>
+    <div class="content">
+      <h1>🔥 Mission 1 — The Druid’s Fire (B2)</h1>
+      <div class="intro">
+        As Ellionor steps into the ancient chamber, the heavy wooden doors moan under their own weight. A golden-orange glow radiates from a vast circle of stones, where a flame burns without end. The scent of wet soil and smoke fills the room. She realizes this is no ordinary fire — it is the eternal flame of the druids, symbolizing the balance between life, death, and rebirth.
+      </div>
+      <div class="match-grid">
+        <div class="term-column" id="termColumn"></div>
+        <div class="definition-column" id="definitionColumn"></div>
+      </div>
+      <button class="button" onclick="checkMatches()">Check Answers</button>
+      <div class="fact" id="fact">
+        “Samhain marked the Celts’ transition between harvest and winter. It was believed that during this twilight of seasons, the boundary between realms dissolved, allowing specters to wander among the living. Bonfires blazed not to frighten but to safeguard — to honor ancestors and repel malevolent forces.”
+      </div>
+    </div>
+  </div>
+<script>
+const pairs = {
+  'Rite': 'Ceremony',
+  'Specter': 'Ghost',
+  'Masquerade': 'Festival',
+  'Illumination': 'Light',
+  'Tribute': 'Offering',
+  'Sanctuary': 'Sacred place',
+  'Linger': 'Stay',
+  'Ancestry': 'Lineage',
+  'Incantation': 'Spell',
+  'Invoke': 'Summon',
+  'Premonition': 'Omen',
+  'Shroud': 'Veil'
+};
+
+const termColumn=document.getElementById('termColumn');
+const defColumn=document.getElementById('definitionColumn');
+const clue=document.getElementById('fact');
+const shuffledWords=Object.keys(pairs).sort(()=>Math.random()-0.5);
+const shuffledDefs=Object.values(pairs).sort(()=>Math.random()-0.5);
+
+shuffledWords.forEach(word=>{
+  const card=document.createElement('div');
+  card.classList.add('card');
+  card.textContent=word;
+  card.draggable=true;
+  card.dataset.word=word;
+  card.addEventListener('dragstart',e=>e.dataTransfer.setData('word',word));
+  termColumn.appendChild(card);
+});
+
+shuffledDefs.forEach(definition=>{
+  const def=document.createElement('div');
+  def.classList.add('definition');
+  def.textContent=definition;
+  def.addEventListener('dragover',e=>e.preventDefault());
+  def.addEventListener('drop',e=>{
+    const dropped=e.dataTransfer.getData('word');
+    const correct=Object.entries(pairs).find(([w,d])=>d===definition)[0];
+    if(dropped===correct){
+      def.style.borderColor='var(--fire-yellow)';
+      def.style.boxShadow='0 0 15px var(--fire-yellow)';
+      def.style.background='rgba(255,217,114,0.2)';
+      def.textContent=`${dropped.toUpperCase()} ✓`;
+      const matchedCard=[...termColumn.children].find(c=>c.dataset.word===dropped);
+      if(matchedCard) matchedCard.remove();
+    } else {
+      def.style.borderColor='red';
+      def.style.boxShadow='0 0 10px red';
+    }
+  });
+  defColumn.appendChild(def);
+});
+
+function checkMatches(){
+  const done=[...document.querySelectorAll('.definition')].filter(d=>d.textContent.includes('✓')).length;
+  if(done===Object.keys(pairs).length){clue.classList.add('show');}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏮 Halloween Quest — The Garden of Lanterns (B2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-stone: #1A2233;
+  --mystic-blue: #5CC8FF;
+  --fire-yellow: #FFB347;
+  --light-cream: #FFF3B0;
+  --lightning: #C8D6E8;
+  --soft-white: #E8F6FF;
+}
+body {
+  margin: 0;
+  background: var(--dark-stone);
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.container {
+  position: relative;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/room5.jpg') center/cover no-repeat;
+  border: 3px solid var(--lightning);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(200,214,232,0.6);
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+.ghost {
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  width: 28%;
+  height: 75%;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/char5.png') center/contain no-repeat;
+  filter: drop-shadow(0 0 35px white) brightness(1.2);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+.content {
+  flex: 1;
+  margin-left: 25%;
+  background: rgba(10,5,20,0.75);
+  border-radius: 15px;
+  border: 2px solid var(--lightning);
+  box-shadow: inset 0 0 40px rgba(200,214,232,0.4);
+  padding: 2rem;
+  color: var(--light-cream);
+  height: 80%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--fire-yellow);
+  text-shadow: 0 0 20px var(--mystic-blue);
+  font-size: clamp(2rem,3vw,3rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.intro {
+  background: rgba(20,20,40,0.6);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 15px;
+  padding: 1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(92,200,255,0.4);
+  margin-bottom: 1.5rem;
+}
+.task {
+  background: rgba(15,10,35,0.7);
+  border: 2px solid var(--mystic-blue);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  color: var(--light-cream);
+  text-align: left;
+  max-width: 80%;
+  line-height: 1.6;
+  box-shadow: 0 0 30px rgba(92,200,255,0.3);
+}
+.dropzone {
+  display: inline-block;
+  min-width: 110px;
+  padding: 0.4rem 0.6rem;
+  margin: 0 0.4rem;
+  border: 2px solid var(--mystic-blue);
+  border-radius: 12px;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(92,200,255,0.3), rgba(10,5,20,0.7));
+  color: var(--light-cream);
+  box-shadow: 0 0 12px rgba(92,200,255,0.4);
+  cursor: pointer;
+}
+.word-bank {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+.word {
+  background: linear-gradient(135deg, var(--soft-white), var(--mystic-blue));
+  border: 2px solid var(--lightning);
+  border-radius: 12px;
+  padding: 0.5rem 0.9rem;
+  color: #000;
+  font-weight: bold;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 0 15px rgba(92,200,255,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.word:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(200,214,232,0.8); }
+.word:active { cursor: grabbing; }
+.button {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  background: var(--mystic-blue);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(92,200,255,0.6);
+  transition: 0.3s;
+}
+.button:hover { background: var(--fire-yellow); transform: scale(1.05); box-shadow: 0 0 30px rgba(255,179,71,0.9); }
+.fact {
+  margin-top: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background: rgba(50,25,10,0.8);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="ghost"></div>
+    <div class="content">
+      <h1>🏮 Mission 5 — The Garden of Lanterns (B2)</h1>
+      <div class="intro">
+        The paper doors slide open to a moonlit garden. Dozens of lanterns drift across a mirror-like pond, each glowing as if holding a memory. Bells echo faintly in the mist. A graceful spirit bows and whispers, “Welcome to the Garden of Souls.”
+      </div>
+      <div class="task">
+        <p>Families light these during the festival to guide souls — gentle <span class="dropzone" data-answer="illumination"></span> shines in the dark.</p>
+        <p>The returning ancestors are called this — <span class="dropzone" data-answer="specters"></span> visiting once a year.</p>
+        <p>People leave this as a gesture of love and gratitude — a heartfelt <span class="dropzone" data-answer="tribute"></span>.</p>
+        <p>This act of remembrance and connection is a sacred <span class="dropzone" data-answer="rite"></span>.</p>
+        <p>During the ceremony, rhythmic <span class="dropzone" data-answer="incantations"></span> drift through the air.</p>
+        <p>The unseen boundary between worlds — the <span class="dropzone" data-answer="shroud"></span> — grows thin beneath the lantern light.</p>
+        <div class="word-bank" id="wordBank"></div>
+      </div>
+      <button class="button" onclick="checkAnswers()">Check Answers</button>
+      <div class="fact" id="fact">
+        “During Obon, Japanese families honor their ancestors through music, prayer, and floating lanterns that guide souls back to the beyond. Each light is a tribute — a bridge between generations and a symbol that memory endures.”
+      </div>
+    </div>
+  </div>
+<script>
+const words = ['illumination','specters','tribute','rite','incantations','shroud'];
+const bank = document.getElementById('wordBank');
+const shuffled = [...words].sort(() => Math.random() - 0.5);
+shuffled.forEach(w => {
+  const div = document.createElement('div');
+  div.classList.add('word');
+  div.textContent = w;
+  div.draggable = true;
+  div.addEventListener('dragstart', e => e.dataTransfer.setData('text', w));
+  bank.appendChild(div);
+});
+const zones = document.querySelectorAll('.dropzone');
+zones.forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    const text = e.dataTransfer.getData('text');
+    if (zone.textContent) {
+      const prev = zone.textContent.replace(' ✓','');
+      const restore = document.createElement('div');
+      restore.classList.add('word');
+      restore.textContent = prev;
+      restore.draggable = true;
+      restore.addEventListener('dragstart', ev => ev.dataTransfer.setData('text', prev));
+      bank.appendChild(restore);
+    }
+    zone.textContent = text;
+    zone.style.borderColor = 'var(--mystic-blue)';
+  });
+  zone.addEventListener('click', () => {
+    if (zone.textContent) {
+      const text = zone.textContent.replace(' ✓','');
+      const restore = document.createElement('div');
+      restore.classList.add('word');
+      restore.textContent = text;
+      restore.draggable = true;
+      restore.addEventListener('dragstart', ev => ev.dataTransfer.setData('text', text));
+      bank.appendChild(restore);
+      zone.textContent = '';
+    }
+  });
+});
+function checkAnswers() {
+  let correct = 0;
+  zones.forEach(zone => {
+    if (zone.textContent.trim() === zone.dataset.answer) {
+      zone.textContent = zone.textContent + ' ✓';
+      zone.style.borderColor = 'lime';
+      correct++;
+    } else {
+      zone.style.borderColor = 'red';
+      setTimeout(() => zone.style.borderColor = 'var(--mystic-blue)', 800);
+    }
+  });
+  if (correct === zones.length) document.getElementById('fact').classList.add('show');
+}
+</script>
+</body>
+</html>

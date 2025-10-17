@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎃 Spirit’s Truth or Dare (B2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Raleway:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-blue: #0E1B25;
+  --moonlight: #C8D6E8;
+  --golden-glow: #FFD972;
+  --soft-white: #F9F9F9;
+  --aura-blue: #AEE2FF;
+  --pumpkin-orange: #FFB347;
+}
+body {
+  margin: 0;
+  background: var(--dark-blue);
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.container {
+  background: linear-gradient(160deg, #1C3B50 0%, #13293D 100%);
+  border: 3px solid var(--golden-glow);
+  border-radius: 25px;
+  box-shadow: 0 0 50px rgba(255,217,114,0.4);
+  width: 85vw;
+  height: 90vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--soft-white);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--golden-glow);
+  text-shadow: 0 0 25px var(--golden-glow);
+}
+.story {
+  background: rgba(14,27,37,0.85);
+  border: 2px solid var(--moonlight);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  width: 80%;
+  margin-top: 1rem;
+  color: var(--soft-white);
+  box-shadow: inset 0 0 20px rgba(200,214,232,0.3);
+}
+.pumpkin {
+  width: 400px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 60px var(--soft-white));
+  cursor: pointer;
+  margin-top: 3rem;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+.buttons {
+  display: none;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+button {
+  background: linear-gradient(145deg, var(--pumpkin-orange), var(--golden-glow));
+  border: none;
+  border-radius: 15px;
+  color: var(--dark-blue);
+  font-family: 'Uncial Antiqua', cursive;
+  font-size: 1.8rem;
+  padding: 1rem 2.2rem;
+  box-shadow: 0 0 30px rgba(255,179,71,0.8);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px rgba(255,217,114,1);
+}
+.card {
+  display: none;
+  background: rgba(14,27,37,0.9);
+  border: 2px solid var(--aura-blue);
+  border-radius: 20px;
+  padding: 1.8rem;
+  width: 70%;
+  margin-top: 2rem;
+  color: var(--soft-white);
+  box-shadow: inset 0 0 30px rgba(174,226,255,0.5);
+  font-size: 1.4rem;
+}
+.hint {
+  color: var(--moonlight);
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  text-shadow: 0 0 12px var(--aura-blue);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🎃 Spirit’s Truth or Dare (B2)</h1>
+  <div class="story">After completing all six missions, the spirits grant Ellionor Gray and her companions a final challenge — a higher-level speaking game. Click the pumpkin to choose Truth or Dare and test your magical wit!</div>
+  <div class="hint">✨ To start a new round, click the pumpkin!</div>
+  <img src="https://katinkedr.github.io/Quest-lessons/mantion/jack.png" class="pumpkin" id="pumpkin" alt="pumpkin">
+  <div class="buttons" id="buttons">
+    <button onclick="showCard('truth')">Truth</button>
+    <button onclick="showCard('dare')">Dare</button>
+  </div>
+  <div class="card" id="card"></div>
+</div>
+<script>
+const truths = [
+  "What deeper meaning do you think lies behind Halloween traditions?",
+  "Which spirit from the manor would you most trust to reveal a secret?",
+  "How do you interpret the idea of a veil between worlds — literally or symbolically?",
+  "Why do you think rituals survive across generations?",
+  "What emotion do you associate most with the presence of spirits — fear, curiosity, or peace?",
+  "What do you think the fire in Druid ceremonies symbolized?",
+  "Why do people wear masks in both celebrations and mourning?",
+  "What might happen if the world forgot to honor its ancestors?",
+  "Do you believe omens can shape human behavior? Why or why not?",
+  "How does remembering the dead help the living?",
+  "What do you think the chant represents in different cultures — prayer, art, or power?",
+  "If you could witness one ancient ceremony, which would it be and why?",
+  "Why do you think humans fear what they cannot see?",
+  "What connects Halloween with other festivals of light and remembrance?",
+  "What do you think makes a soul ‘restless’?"
+];
+const dares = [
+  "Use ‘had + past participle’ to describe something you would have done differently during Samhain.",
+  "Write a complex sentence with ‘whom’ and ‘haunt.’",
+  "Use ‘veil’ in a metaphorical sentence that includes a modal verb (e.g. might, could).",
+  "Create a sentence in Present Perfect Continuous using ‘ritual’ and ‘tradition.’",
+  "Write a conditional type II sentence with ‘spirit.’",
+  "Use ‘symbolize’ and ‘rebirth’ in a passive voice sentence.",
+  "Make a question with inversion using ‘had’ and ‘disguise.’",
+  "Write a third conditional sentence using ‘offering’ and ‘altar.’",
+  "Use ‘omen’ in a sentence with a relative clause.",
+  "Combine ‘memory,’ ‘spirit,’ and ‘light’ in one compound-complex sentence.",
+  "Use ‘chant’ in a sentence with an adverbial clause of purpose.",
+  "Write a sentence in Future Perfect using ‘summon.’",
+  "Make a negative Past Perfect sentence with ‘haunt.’",
+  "Use ‘lantern’ and ‘connect’ in a sentence with a non-defining relative clause.",
+  "Write an if-clause expressing regret using ‘spirit’ and ‘peace.’"
+];
+let usedTruths = [];
+let usedDares = [];
+const pumpkin = document.getElementById('pumpkin');
+const buttons = document.getElementById('buttons');
+const card = document.getElementById('card');
+
+pumpkin.addEventListener('click', () => {
+  card.style.display = 'none';
+  buttons.style.display = 'flex';
+});
+
+function showCard(type) {
+  let list = type === 'truth' ? truths : dares;
+  let usedList = type === 'truth' ? usedTruths : usedDares;
+  if (usedList.length === list.length) usedList.length = 0;
+  let filtered = list.filter(x => !usedList.includes(x));
+  let random = filtered[Math.floor(Math.random() * filtered.length)];
+  usedList.push(random);
+  card.innerHTML = `<b>${type.toUpperCase()}:</b> ${random}`;
+  card.style.display = 'block';
+  buttons.style.display = 'none';
+}
+</script>
+</body>
+</html>

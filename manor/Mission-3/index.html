@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌺 Halloween Quest — The Altar of Colors (B2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-stone: #1A2233;
+  --mystic-blue: #5CC8FF;
+  --fire-yellow: #FFB347;
+  --light-cream: #FFF3B0;
+  --lightning: #C8D6E8;
+}
+body {
+  margin: 0;
+  background: var(--dark-stone);
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.container {
+  position: relative;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/room3.jpg') center/cover no-repeat;
+  border: 3px solid var(--lightning);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(200,214,232,0.6);
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+.ghost {
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  width: 28%;
+  height: 75%;
+  background: url('https://katinkedr.github.io/Quest-lessons/mantion/char3.png') center/contain no-repeat;
+  filter: drop-shadow(0 0 35px white) brightness(1.2);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+.content {
+  flex: 1;
+  margin-left: 25%;
+  background: rgba(10,5,20,0.75);
+  border-radius: 15px;
+  border: 2px solid var(--lightning);
+  box-shadow: inset 0 0 40px rgba(200,214,232,0.4);
+  padding: 2rem;
+  color: var(--light-cream);
+  height: 80%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+h1 {
+  font-family: 'Uncial Antiqua', cursive;
+  color: var(--fire-yellow);
+  text-shadow: 0 0 20px var(--mystic-blue);
+  font-size: clamp(2rem,3vw,3rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.intro {
+  background: rgba(30,20,10,0.6);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 15px;
+  padding: 1rem;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(255,179,71,0.3);
+  margin-bottom: 1.5rem;
+}
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  justify-items: center;
+  align-items: start;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 900px;
+}
+.columnA, .columnB {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  align-items: stretch;
+}
+.card {
+  background: rgba(20,10,30,0.7);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  color: var(--light-cream);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+.card:hover { transform: scale(1.03); box-shadow: 0 0 15px var(--fire-yellow); }
+.button {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  background: var(--mystic-blue);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(92,200,255,0.6);
+  transition: 0.3s;
+}
+.button:hover { background: var(--fire-yellow); transform: scale(1.05); box-shadow: 0 0 30px rgba(255,179,71,0.9); }
+.fact {
+  margin-top: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  background: rgba(50,25,10,0.8);
+  border: 2px solid var(--fire-yellow);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  max-width: 80%;
+}
+.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="ghost"></div>
+    <div class="content">
+      <h1>🌺 Mission 3 — The Altar of Colors (B2)</h1>
+      <div class="intro">
+        A golden glow radiates from hundreds of candles. Marigolds and sugar skulls adorn a vivid altar. The scent of wax and sweet bread fills the air. A smiling spirit in blossoms greets Ellionor: “Welcome to the realm where memory blooms eternal.”
+      </div>
+      <div class="match-grid">
+        <div class="columnA" id="colA"></div>
+        <div class="columnB" id="colB"></div>
+      </div>
+      <button class="button" onclick="checkMatches()">Check Answers</button>
+      <div class="fact" id="fact">
+        “In Mexico, Día de los Muertos — the Day of the Dead — celebrates remembrance, not sorrow. Families build radiant altars, adorned with tributes of food, flowers, and candles to guide ancestral spirits home. Each marigold petal glows like a spark of memory, lighting the path between worlds.”
+      </div>
+    </div>
+  </div>
+<script>
+const pairs = {
+  'Families created an elaborate sanctuary': '→ glowing with candles and color.',
+  'People offered a tribute of food and flowers': '→ to honor the departed.',
+  'Each illumination': '→ guided a returning soul.',
+  'A tranquil specter': '→ lingered among the offerings.',
+  'The ancestral portraits': '→ reflected generations of memory.',
+  'Soft chants and laughter': '→ filled the night with devotion.'
+};
+const colA = document.getElementById('colA');
+const colB = document.getElementById('colB');
+const fact = document.getElementById('fact');
+const shuffledA = Object.keys(pairs).sort(() => Math.random() - 0.5);
+const shuffledB = Object.values(pairs).sort(() => Math.random() - 0.5);
+shuffledA.forEach(a => {
+  const div = document.createElement('div');
+  div.classList.add('card');
+  div.textContent = a;
+  div.draggable = true;
+  div.dataset.key = a;
+  div.addEventListener('dragstart', e => e.dataTransfer.setData('text', a));
+  colA.appendChild(div);
+});
+shuffledB.forEach(b => {
+  const div = document.createElement('div');
+  div.classList.add('card');
+  div.textContent = b;
+  div.addEventListener('dragover', e => e.preventDefault());
+  div.addEventListener('drop', e => {
+    const text = e.dataTransfer.getData('text');
+    const correct = Object.entries(pairs).find(([w, d]) => d === b)[0];
+    if (text === correct) {
+      div.innerHTML = `<b>${text}</b> ${b} ✓`;
+      div.style.borderColor = 'lime';
+      div.style.boxShadow = '0 0 15px lime';
+      const usedCard = [...colA.children].find(c => c.textContent === text);
+      if (usedCard) usedCard.remove();
+    } else {
+      div.style.borderColor = 'red';
+      div.style.boxShadow = '0 0 10px red';
+    }
+  });
+  colB.appendChild(div);
+});
+function checkMatches() {
+  const done = [...document.querySelectorAll('.columnB .card')].filter(d => d.textContent.includes('✓')).length;
+  if (done === Object.keys(pairs).length) fact.classList.add('show');
+}
+</script>
+</body>
+</html>
